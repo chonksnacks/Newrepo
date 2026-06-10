@@ -27,6 +27,11 @@ html {
   scroll-snap-type: y mandatory;
 }
 
+/* the story page is a long editorial scroll — no snapping there */
+html.no-snap {
+  scroll-snap-type: none;
+}
+
 body {
   margin: 0;
   font-family: 'Inter', system-ui, sans-serif;
@@ -39,7 +44,7 @@ body {
 .hero-title {
   font-family: 'Cormorant Garamond', serif;
   letter-spacing: -0.02em;
-  line-height: 0.92;
+  line-height: 1.05;
 }
 
 a:focus-visible,

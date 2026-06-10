@@ -20,18 +20,17 @@ const SETTLED = HEADLINE_DELAY + 2 * WORD_STAGGER + ENTRANCE_DURATION
 
 type WordProps = {
   index: number
-  positionClass: string
   driftFrom: number
   children: React.ReactNode
 }
 
-function HeadlineWord({ index, positionClass, driftFrom, children }: WordProps) {
+function HeadlineWord({ index, driftFrom, children }: WordProps) {
   const reducedMotion = useReducedMotion()
   const delay = HEADLINE_DELAY + index * WORD_STAGGER
 
   return (
     <motion.span
-      className={`absolute block ${positionClass}`}
+      className="block"
       animate={
         reducedMotion
           ? undefined
@@ -45,9 +44,10 @@ function HeadlineWord({ index, positionClass, driftFrom, children }: WordProps) 
         repeatType: 'mirror',
       }}
     >
+      {/* mask height includes the descender padding so y/g/p never clip */}
       <span className="block overflow-hidden">
         <motion.span
-          className="block whitespace-nowrap"
+          className="block whitespace-nowrap pb-[0.2em] -mb-[0.1em]"
           initial={reducedMotion ? { opacity: 0 } : { y: '100%', opacity: 0 }}
           animate={reducedMotion ? { opacity: 1 } : { y: 0, opacity: 1 }}
           transition={{ delay, duration: ENTRANCE_DURATION, ease: EASE }}
@@ -152,18 +152,15 @@ export default function Hero() {
       </motion.nav>
 
       <div className="relative z-10 h-full w-full">
-        <h1 className="hero-title absolute inset-0 m-0 text-[9vw] font-medium text-cream">
-          <HeadlineWord index={0} positionClass="left-8 md:left-16 top-[20%]" driftFrom={-6}>
+        {/* single left column of type; the walking figure owns the right side */}
+        <h1 className="hero-title absolute left-10 top-1/2 m-0 flex -translate-y-1/2 flex-col gap-[2vw] text-[8vw] font-medium text-cream md:left-16 md:text-[8.5vw]">
+          <HeadlineWord index={0} driftFrom={-6}>
             everyday
           </HeadlineWord>
-          <HeadlineWord index={1} positionClass="right-8 md:right-16 top-[42%]" driftFrom={6}>
+          <HeadlineWord index={1} driftFrom={6}>
             everywhere
           </HeadlineWord>
-          <HeadlineWord
-            index={2}
-            positionClass="left-[14%] md:left-[26%] top-[62%]"
-            driftFrom={-6}
-          >
+          <HeadlineWord index={2} driftFrom={-6}>
             every <em className="font-normal italic">occasion</em>
           </HeadlineWord>
         </h1>

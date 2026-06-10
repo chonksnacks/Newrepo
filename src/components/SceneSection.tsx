@@ -60,7 +60,7 @@ export default function SceneSection({
       >
         <span className="block overflow-hidden">
           <motion.h2
-            className="hero-title m-0 text-[13vw] font-medium lowercase text-cream md:text-[8vw]"
+            className="hero-title m-0 pb-[0.2em] -mb-[0.1em] text-[13vw] font-medium lowercase text-cream md:text-[8vw]"
             variants={rise}
           >
             {headline}
