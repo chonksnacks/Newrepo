@@ -1,0 +1,68 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-cream: #f2ede4;
+  --color-bone: #e5ddce;
+  --color-espresso: #2b211a;
+  --color-chestnut: #6b4f3a;
+  --color-clay: #a98467;
+}
+
+:root {
+  --cream: #f2ede4;
+  --bone: #e5ddce;
+  --espresso: #2b211a;
+  --chestnut: #6b4f3a;
+  --clay: #a98467;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--espresso);
+  color: var(--cream);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  letter-spacing: -0.02em;
+  line-height: 0.92;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--cream);
+  outline-offset: 2px;
+}
+
+@keyframes scroll-cue-draw {
+  0% {
+    transform: scaleY(0);
+  }
+  60% {
+    transform: scaleY(1);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+.scroll-cue-line {
+  transform-origin: top;
+  animation: scroll-cue-draw 2s cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-cue-line {
+    animation: none;
+    transform: scaleY(1);
+  }
+}
