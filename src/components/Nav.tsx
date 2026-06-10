@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import Logo from './Logo'
 
 const NAV_LINKS: Array<[string, string]> = [
   ['shop', '/'],
@@ -21,11 +22,8 @@ export default function Nav() {
           className="flex items-center gap-2 rounded-full py-3 pl-4 pr-6 backdrop-blur"
           style={{ background: 'rgba(43,33,26,0.85)' }}
         >
-          {/* EC monogram SVG goes here */}
-          <svg viewBox="0 0 24 24" className="h-5 w-5 fill-cream" aria-hidden="true">
-            <path d="M5 4h9v2.6H8v3.1h5.4v2.6H8v3.1h6V18H5V4zm12.6 7c0-4 2.6-7.2 6.4-7.2v2.7c-2.2 0-3.6 2-3.6 4.5s1.4 4.5 3.6 4.5v2.7c-3.8 0-6.4-3.2-6.4-7.2z" />
-          </svg>
-          <span className="text-sm font-medium tracking-tight text-cream">
+          <Logo className="h-6 w-auto text-cream" />
+          <span className="hero-title text-sm font-medium uppercase tracking-wide text-cream">
             everyday crew
           </span>
         </a>

@@ -60,7 +60,7 @@ function CrewHeading({ className = '' }: { className?: string }) {
         </motion.h2>
       </span>
       <motion.span
-        className="hero-title text-base italic text-chestnut md:text-lg"
+        className="hero-title text-sm uppercase tracking-wide text-chestnut md:text-base"
         variants={{
           hidden: { opacity: 0 },
           visible: {
