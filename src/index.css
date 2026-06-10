@@ -22,6 +22,11 @@ body,
   height: 100%;
 }
 
+/* full-screen sections snap cleanly; the document itself stays scrollable */
+html {
+  scroll-snap-type: y mandatory;
+}
+
 body {
   margin: 0;
   font-family: 'Inter', system-ui, sans-serif;

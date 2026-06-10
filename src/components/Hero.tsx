@@ -1,21 +1,6 @@
 import { useEffect, useState } from 'react'
 import { motion, useReducedMotion, animate } from 'framer-motion'
-
-const EASE = [0.22, 1, 0.36, 1] as const
-
-// Warm espresso-to-chestnut frame shown while the video loads — never flashes black.
-const POSTER =
-  'data:image/svg+xml,' +
-  encodeURIComponent(
-    `<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a2c21"/><stop offset="1" stop-color="#2B211A"/></linearGradient></defs><rect width="1920" height="1080" fill="url(#g)"/></svg>`,
-  )
-
-// Film grain: inline SVG feTurbulence noise tile.
-const GRAIN =
-  'data:image/svg+xml,' +
-  encodeURIComponent(
-    `<svg xmlns="http://www.w3.org/2000/svg" width="160" height="160"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" stitchTiles="stitch"/></filter><rect width="160" height="160" filter="url(#n)"/></svg>`,
-  )
+import { EASE, GRAIN, POSTER, TINT } from './media'
 
 // Pexels free license (commercial use, no attribution): "A Person Walking on a
 // Sidewalk" by Taryn Elliott — https://www.pexels.com/video/a-person-walking-on-a-sidewalk-5665059/
@@ -92,27 +77,11 @@ function CountUp({ to, delay }: { to: number; delay: number }) {
   return <>{reducedMotion ? to : value}</>
 }
 
-function StatDivider({ rotate }: { rotate: number }) {
-  return (
-    <div
-      aria-hidden="true"
-      className="hidden md:block h-px w-24 bg-clay/50"
-      style={{ transform: `rotate(${rotate}deg)` }}
-    />
-  )
-}
-
-const statFade = (delay: number, reducedMotion: boolean) => ({
-  initial: { opacity: 0, y: reducedMotion ? 0 : 10 },
-  animate: { opacity: 1, y: 0 },
-  transition: { delay, duration: 0.8, ease: EASE },
-})
-
 export default function Hero() {
   const reducedMotion = useReducedMotion() ?? false
 
   return (
-    <section className="relative h-screen w-full overflow-hidden bg-espresso">
+    <section className="relative h-screen w-full snap-start overflow-hidden bg-espresso">
       <video
         className="absolute inset-0 h-full w-full object-cover"
         src={VIDEO_SRC}
@@ -124,14 +93,7 @@ export default function Hero() {
       />
 
       {/* warm tint so cream text always holds contrast */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-0"
-        style={{
-          background:
-            'linear-gradient(to bottom, rgba(43,33,26,0.25), rgba(43,33,26,0.65))',
-        }}
-      />
+      <div aria-hidden="true" className="absolute inset-0" style={{ background: TINT }} />
 
       {/* film grain — kills the flat-screen coldness */}
       <div
@@ -190,39 +152,33 @@ export default function Hero() {
       </motion.nav>
 
       <div className="relative z-10 h-full w-full">
-        <h1 className="hero-title absolute inset-0 m-0 text-[15vw] font-medium text-cream md:text-[12vw]">
-          <HeadlineWord index={0} positionClass="left-4 md:left-10 top-[16%]" driftFrom={-6}>
+        <h1 className="hero-title absolute inset-0 m-0 text-[9vw] font-medium text-cream">
+          <HeadlineWord index={0} positionClass="left-8 md:left-16 top-[20%]" driftFrom={-6}>
             everyday
           </HeadlineWord>
-          <HeadlineWord index={1} positionClass="right-4 md:right-8 top-[38%]" driftFrom={6}>
+          <HeadlineWord index={1} positionClass="right-8 md:right-16 top-[42%]" driftFrom={6}>
             everywhere
           </HeadlineWord>
           <HeadlineWord
             index={2}
-            positionClass="left-[10%] md:left-[22%] top-[64%] md:top-[60%]"
+            positionClass="left-[14%] md:left-[26%] top-[62%]"
             driftFrom={-6}
           >
             every <em className="font-normal italic">occasion</em>
           </HeadlineWord>
         </h1>
 
-        <motion.p
-          className="absolute left-6 top-[47%] md:top-[44%] m-0 max-w-[260px] text-[15px] leading-snug text-cream/90 md:left-10"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: SETTLED + 0.3, duration: 0.8, ease: EASE }}
-        >
-          one pair, built for all of it. the morning run, the office, the late
-          dinner. made in new york for people who don't change socks to change
-          plans.
-        </motion.p>
-
-        {/* stats */}
         <motion.div
-          className="absolute right-6 top-[13%] flex flex-col items-end gap-3 md:right-24"
-          {...statFade(SETTLED + 0.4, reducedMotion)}
+          className="absolute right-8 top-[15%] flex flex-col items-end gap-3 md:right-24"
+          initial={{ opacity: 0, y: reducedMotion ? 0 : 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: SETTLED + 0.4, duration: 0.8, ease: EASE }}
         >
-          <StatDivider rotate={-20} />
+          <div
+            aria-hidden="true"
+            className="hidden md:block h-px w-24 bg-clay/50"
+            style={{ transform: 'rotate(-20deg)' }}
+          />
           <div className="text-right">
             <div className="hero-title text-4xl font-medium tracking-tight text-cream md:text-5xl">
               <CountUp to={18} delay={SETTLED + 0.5} />
@@ -230,38 +186,6 @@ export default function Hero() {
             </div>
             <div className="mt-1 text-xs text-bone/80 md:text-sm">
               of wear, one pair
-            </div>
-          </div>
-        </motion.div>
-
-        <motion.div
-          className="absolute bottom-28 left-6 flex flex-col gap-3 md:bottom-24 md:left-20"
-          {...statFade(SETTLED + 0.55, reducedMotion)}
-        >
-          <div>
-            <div className="hero-title text-4xl font-medium tracking-tight text-cream md:text-5xl">
-              1 of 5
-            </div>
-            <div className="mt-2 flex items-center gap-3">
-              <StatDivider rotate={20} />
-            </div>
-            <div className="mt-1 text-xs text-bone/80 md:text-sm">
-              boroughs we call home
-            </div>
-          </div>
-        </motion.div>
-
-        <motion.div
-          className="absolute bottom-24 right-6 flex flex-col items-end gap-3 md:bottom-20 md:right-20"
-          {...statFade(SETTLED + 0.7, reducedMotion)}
-        >
-          <StatDivider rotate={-20} />
-          <div className="text-right">
-            <div className="hero-title text-4xl font-medium tracking-tight text-cream md:text-5xl">
-              <CountUp to={365} delay={SETTLED + 0.8} />
-            </div>
-            <div className="mt-1 text-xs text-bone/80 md:text-sm">
-              days a year, zero excuses
             </div>
           </div>
         </motion.div>
