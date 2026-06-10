@@ -55,7 +55,7 @@ export default function ShopCta() {
         </motion.p>
         <motion.a
           href="/"
-          className="rounded-full bg-cream px-10 py-4 text-sm font-medium text-espresso transition-colors duration-300 hover:bg-bone"
+          className="rounded-full bg-cream px-10 py-4 text-xs font-medium uppercase tracking-[0.12em] text-espresso transition-colors duration-300 hover:bg-bone"
           variants={{
             hidden: { opacity: 0 },
             visible: {

@@ -53,7 +53,7 @@ export default function StoryPage() {
         <div className="flex items-center justify-between gap-4">
           <a
             href="./"
-            className="flex items-center gap-2 rounded-full py-3 pl-4 pr-6 backdrop-blur"
+            className="flex items-center gap-3 rounded-full py-3.5 pl-6 pr-8 backdrop-blur"
             style={{ background: 'rgba(43,33,26,0.85)' }}
           >
             <Logo className="h-6 w-auto text-cream" />
@@ -63,7 +63,7 @@ export default function StoryPage() {
           </a>
           <a
             href="./"
-            className="rounded-full bg-cream px-6 py-3 text-sm font-medium text-espresso transition-colors duration-300 hover:bg-bone"
+            className="rounded-full bg-cream px-7 py-3.5 text-xs font-medium uppercase tracking-[0.12em] text-espresso transition-colors duration-300 hover:bg-bone"
           >
             back home
           </a>
