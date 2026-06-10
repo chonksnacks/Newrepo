@@ -2,15 +2,96 @@ import { useEffect, useState } from 'react'
 import { motion, useReducedMotion, animate } from 'framer-motion'
 import { EASE, GRAIN, POSTER, TINT } from './media'
 
-// Pexels free license (commercial use, no attribution): "A Person Walking on a
-// Sidewalk" by Taryn Elliott — https://www.pexels.com/video/a-person-walking-on-a-sidewalk-5665059/
-// TODO: replace with EDC brand footage. This direct download URL was chosen from
-// a Pexels search but could not be byte-verified from the build sandbox (video
-// hosts are blocked here) — confirm warmth/orientation/size, then self-host the
-// .mp4 so the hero never depends on a third-party redirect.
-const VIDEO_SRC = 'https://www.pexels.com/download/video/5665059/'
+// Pexels free-license clips (commercial use, no attribution), one per moment of
+// the day. Chosen via search but not byte-verified from the build sandbox
+// (video hosts are blocked there).
+// TODO: replace with EDC brand footage, or confirm warmth/length/size and
+// self-host the .mp4s so the hero never depends on third-party redirects.
+const SCENES = [
+  // city walk — "A Person Walking on a Sidewalk" by Taryn Elliott
+  // https://www.pexels.com/video/a-person-walking-on-a-sidewalk-5665059/
+  'https://www.pexels.com/download/video/5665059/',
+  // office — "A Man Working on a Laptop inside the Office"
+  // https://www.pexels.com/video/a-man-working-on-a-laptop-inside-the-office-3140468/
+  'https://www.pexels.com/download/video/3140468/',
+  // the run — "A large group of people running in a race"
+  // https://www.pexels.com/video/a-large-group-of-people-running-in-a-race-27441394/
+  'https://www.pexels.com/download/video/27441394/',
+  // travel — "Airplane Taking Off During Sunset" by sunny Huang
+  // https://www.pexels.com/video/airplane-taking-off-during-sunset-5008861/
+  'https://www.pexels.com/download/video/5008861/',
+  // dinner — "Friends Having a Dinner Party at Home" by cottonbro studio
+  // https://www.pexels.com/video/friends-having-a-dinner-party-at-home-6953396/
+  'https://www.pexels.com/download/video/6953396/',
+]
 
-const NAV_LINKS = ['shop', 'our story', 'journal', 'care']
+const SCENE_HOLD_MS = 5500
+const SCENE_FADE_S = 1.2
+
+function CrossfadeScenes() {
+  const reducedMotion = useReducedMotion()
+  const [isMobile] = useState(
+    () => typeof window !== 'undefined' && window.matchMedia('(max-width: 767px)').matches,
+  )
+  const [active, setActive] = useState(0)
+  // scenes 3–5 mount only after the first two have had time to load
+  const [tailLoaded, setTailLoaded] = useState(false)
+  const cycling = !reducedMotion && !isMobile
+
+  useEffect(() => {
+    if (!cycling) return
+    const lazy = setTimeout(() => setTailLoaded(true), 4000)
+    const cycle = setInterval(
+      () => setActive((a) => (a + 1) % SCENES.length),
+      SCENE_HOLD_MS,
+    )
+    return () => {
+      clearTimeout(lazy)
+      clearInterval(cycle)
+    }
+  }, [cycling])
+
+  // mobile: a single looping clip protects load time; reduced motion: one
+  // still scene, no playback
+  if (!cycling) {
+    return (
+      <video
+        className="absolute inset-0 h-full w-full object-cover"
+        src={SCENES[0]}
+        poster={POSTER}
+        autoPlay={!reducedMotion}
+        loop
+        muted
+        playsInline
+        preload="metadata"
+      />
+    )
+  }
+
+  return (
+    <>
+      {SCENES.map(
+        (src, i) =>
+          (i < 2 || tailLoaded) && (
+            <motion.video
+              key={src}
+              className="absolute inset-0 h-full w-full object-cover"
+              src={src}
+              poster={i === 0 ? POSTER : undefined}
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload={i < 2 ? 'auto' : 'metadata'}
+              initial={{ opacity: i === 0 ? 1 : 0 }}
+              animate={{ opacity: i === active ? 1 : 0 }}
+              transition={{ duration: SCENE_FADE_S, ease: 'easeInOut' }}
+            />
+          ),
+      )}
+    </>
+  )
+}
 
 const HEADLINE_DELAY = 0.35 // when the first word starts rising
 const WORD_STAGGER = 0.18
@@ -82,15 +163,8 @@ export default function Hero() {
 
   return (
     <section className="relative h-screen w-full snap-start overflow-hidden bg-espresso">
-      <video
-        className="absolute inset-0 h-full w-full object-cover"
-        src={VIDEO_SRC}
-        poster={POSTER}
-        autoPlay
-        loop
-        muted
-        playsInline
-      />
+      {/* the day cycles behind the fixed type: walk, work, run, fly, dine */}
+      <CrossfadeScenes />
 
       {/* warm tint so cream text always holds contrast */}
       <div aria-hidden="true" className="absolute inset-0" style={{ background: TINT }} />
@@ -102,57 +176,8 @@ export default function Hero() {
         style={{ backgroundImage: `url("${GRAIN}")` }}
       />
 
-      <motion.nav
-        className="absolute left-0 right-0 top-0 z-20 px-6 pt-6 md:px-10"
-        initial={{ opacity: 0, y: -12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: HEADLINE_DELAY + 0.3, duration: 0.6, ease: 'easeOut' }}
-      >
-        <div className="flex items-center justify-between gap-4">
-          <a
-            href="/"
-            className="flex items-center gap-2 rounded-full py-3 pl-4 pr-6 backdrop-blur"
-            style={{ background: 'rgba(43,33,26,0.85)' }}
-          >
-            {/* EC monogram SVG goes here */}
-            <svg
-              viewBox="0 0 24 24"
-              className="h-5 w-5 fill-cream"
-              aria-hidden="true"
-            >
-              <path d="M5 4h9v2.6H8v3.1h5.4v2.6H8v3.1h6V18H5V4zm12.6 7c0-4 2.6-7.2 6.4-7.2v2.7c-2.2 0-3.6 2-3.6 4.5s1.4 4.5 3.6 4.5v2.7c-3.8 0-6.4-3.2-6.4-7.2z" />
-            </svg>
-            <span className="text-sm font-medium tracking-tight text-cream">
-              everyday crew
-            </span>
-          </a>
-
-          <div
-            className="hidden items-center gap-1 rounded-full px-3 py-2 backdrop-blur md:flex"
-            style={{ background: 'rgba(43,33,26,0.85)' }}
-          >
-            {NAV_LINKS.map((label) => (
-              <a
-                key={label}
-                href="/"
-                className="rounded-full px-5 py-2 text-sm text-bone transition-colors duration-300 hover:bg-chestnut/40 hover:text-cream"
-              >
-                {label}
-              </a>
-            ))}
-          </div>
-
-          <a
-            href="/"
-            className="rounded-full bg-cream px-6 py-3 text-sm font-medium text-espresso transition-colors duration-300 hover:bg-bone"
-          >
-            shop socks
-          </a>
-        </div>
-      </motion.nav>
-
       <div className="relative z-10 h-full w-full">
-        {/* single left column of type; the walking figure owns the right side */}
+        {/* single left column of type; the imagery owns the right side */}
         <h1 className="hero-title absolute left-10 top-1/2 m-0 flex -translate-y-1/2 flex-col gap-[2vw] text-[8vw] font-medium text-cream md:left-16 md:text-[8.5vw]">
           <HeadlineWord index={0} driftFrom={-6}>
             everyday
