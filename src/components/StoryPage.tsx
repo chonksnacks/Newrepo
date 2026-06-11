@@ -27,12 +27,12 @@ function Reveal({
   )
 }
 
-// big quotes assemble word by word as they enter the viewport
-function WordsQuote({ text }: { text: string }) {
+// the page's one trick: big serif moments assemble word by word
+function Moment({ text }: { text: string }) {
   const words = text.split(' ')
   return (
     <motion.blockquote
-      className="hero-title m-0 max-w-[16em] py-4 text-4xl font-normal italic lowercase text-cream md:py-6 md:text-6xl"
+      className="hero-title m-0 max-w-[14em] py-12 text-3xl font-normal italic lowercase text-cream md:py-20 md:text-5xl"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.6 }}
@@ -60,7 +60,7 @@ function WordsQuote({ text }: { text: string }) {
 
 function Chapter({ n, title }: { n: string; title: string }) {
   return (
-    <Reveal className="flex items-center gap-4 pt-10 first:pt-0">
+    <Reveal className="flex items-center gap-4 pt-16 first:pt-0 md:pt-24">
       <span className="text-xs tracking-[0.14em] text-clay">{n}</span>
       <span aria-hidden="true" className="h-px w-12 bg-clay/50" />
       <span className="text-xs uppercase tracking-[0.14em] text-bone/80">
@@ -70,24 +70,22 @@ function Chapter({ n, title }: { n: string; title: string }) {
   )
 }
 
-// candid photos as scrapbook inserts — cream frame, slight tilt, warm grade
+// candid photos as full-column breaks — straight, quiet, warm grade
 function Snapshot({
   src,
   alt,
   caption,
-  tilt = -2,
 }: {
   src: string
   alt: string
   caption: string
-  tilt?: number
 }) {
   return (
     <motion.figure
-      className="m-0 my-4 w-full max-w-[440px] bg-cream p-3 pb-2 shadow-[0_18px_40px_-18px_rgba(20,12,8,0.7)]"
-      initial={{ opacity: 0, y: 28, rotate: 0 }}
-      whileInView={{ opacity: 1, y: 0, rotate: tilt }}
-      viewport={{ once: true, amount: 0.4 }}
+      className="m-0 w-full py-4 md:py-8"
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.9, ease: EASE }}
     >
       <img
@@ -97,7 +95,7 @@ function Snapshot({
         className="block w-full"
         style={{ filter: 'sepia(0.18) saturate(0.92) brightness(0.98)' }}
       />
-      <figcaption className="hero-title px-1 pt-2 text-base italic lowercase text-espresso/80">
+      <figcaption className="pt-3 text-xs lowercase tracking-[0.14em] text-bone/70">
         {caption}
       </figcaption>
     </motion.figure>
@@ -109,17 +107,6 @@ function Beat({ children }: { children: React.ReactNode }) {
   return (
     <Reveal>
       <p className="m-0 max-w-[46ch] text-[17px] leading-relaxed text-bone">
-        {children}
-      </p>
-    </Reveal>
-  )
-}
-
-// punchline sentences get to be their own moment
-function BigLine({ children }: { children: React.ReactNode }) {
-  return (
-    <Reveal>
-      <p className="hero-title m-0 max-w-[18em] text-3xl font-medium lowercase text-cream md:text-4xl">
         {children}
       </p>
     </Reveal>
@@ -206,9 +193,8 @@ export default function StoryPage() {
             that vanishes into a dimension between the washer and the dryer,
             never to be seen again.
           </Beat>
-          <BigLine>we didn't think that was good enough.</BigLine>
-
-          <WordsQuote text="we wanted to make a sock worth keeping." />
+          <Beat>We didn't think that was good enough.</Beat>
+          <Moment text="we wanted to make a sock worth keeping." />
 
           <Chapter n="02" title="the fix" />
 
@@ -222,8 +208,7 @@ export default function StoryPage() {
             src="story/founders.webp"
             alt="the two founders at a work table comparing samples"
             caption="the two of us, mid-argument about a cuff"
-            tilt={-2}
-          />
+            />
           <Beat>
             Months of meticulous research. Testing almost every sock on
             Amazon. The answer: combed cotton — the short, rough fibers
@@ -235,19 +220,17 @@ export default function StoryPage() {
             src="story/samples.webp"
             alt="rows of tagged sock samples spread on a table"
             caption="the audition pile — tagged, tested, mostly rejected"
-            tilt={1.5}
-          />
+            />
           <Beat>
             We blend it with nylon for durability and spandex for the fit:
             snug without squeezing, structured but silky soft. Pillowy on day
             one. Identical on day three hundred.
           </Beat>
-          <BigLine>
-            at the gym. at the office. on a slow jog on a cold october
-            morning. everywhere you show up, it shows up.
-          </BigLine>
-
-          <WordsQuote text="and then there's the bag." />
+          <Beat>
+            At the gym. At the office. On a slow jog on a cold October
+            morning. Everywhere you show up, it shows up.
+          </Beat>
+          <Moment text="and then there's the bag." />
 
           <Chapter n="03" title="the bag" />
 
@@ -276,9 +259,8 @@ export default function StoryPage() {
             damn about the small things. For anyone who's ever lost a sock to
             the void and thought, genuinely, there has to be a better way.
           </Beat>
-          <BigLine>there is. you found it. welcome to the crew.</BigLine>
-
-          <WordsQuote text="do the basics, do them right. that's the whole thing." />
+          <Beat>There is. You found it. Welcome to the crew.</Beat>
+          <Moment text="do the basics, do them right. that's the whole thing." />
 
           <Reveal>
             <a
