@@ -70,6 +70,40 @@ function Chapter({ n, title }: { n: string; title: string }) {
   )
 }
 
+// candid photos as scrapbook inserts — cream frame, slight tilt, warm grade
+function Snapshot({
+  src,
+  alt,
+  caption,
+  tilt = -2,
+}: {
+  src: string
+  alt: string
+  caption: string
+  tilt?: number
+}) {
+  return (
+    <motion.figure
+      className="m-0 my-4 w-full max-w-[440px] bg-cream p-3 pb-2 shadow-[0_18px_40px_-18px_rgba(20,12,8,0.7)]"
+      initial={{ opacity: 0, y: 28, rotate: 0 }}
+      whileInView={{ opacity: 1, y: 0, rotate: tilt }}
+      viewport={{ once: true, amount: 0.4 }}
+      transition={{ duration: 0.9, ease: EASE }}
+    >
+      <img
+        src={src}
+        alt={alt}
+        loading="lazy"
+        className="block w-full"
+        style={{ filter: 'sepia(0.18) saturate(0.92) brightness(0.98)' }}
+      />
+      <figcaption className="hero-title px-1 pt-2 text-base italic lowercase text-espresso/80">
+        {caption}
+      </figcaption>
+    </motion.figure>
+  )
+}
+
 // one thought per beat — nobody ever faces a wall of text
 function Beat({ children }: { children: React.ReactNode }) {
   return (
@@ -184,6 +218,12 @@ export default function StoryPage() {
             morning without thinking about it. Because when it's right, you
             don't have to.
           </Beat>
+          <Snapshot
+            src="story/founders.webp"
+            alt="the two founders at a work table comparing samples"
+            caption="the two of us, mid-argument about a cuff"
+            tilt={-2}
+          />
           <Beat>
             Months of meticulous research. Testing almost every sock on
             Amazon. The answer: combed cotton — the short, rough fibers
@@ -191,6 +231,12 @@ export default function StoryPage() {
             behind pilling, that scratchy feeling, and why regular socks look
             a year old by their third wash.
           </Beat>
+          <Snapshot
+            src="story/samples.webp"
+            alt="rows of tagged sock samples spread on a table"
+            caption="the audition pile — tagged, tested, mostly rejected"
+            tilt={1.5}
+          />
           <Beat>
             We blend it with nylon for durability and spandex for the fit:
             snug without squeezing, structured but silky soft. Pillowy on day
