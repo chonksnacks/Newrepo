@@ -16,7 +16,7 @@ const STEPS = [
   {
     n: '03',
     title: 'no bleach',
-    body: 'bleach breaks down spandex, and the fit is the whole point. skip it.',
+    body: 'bleach breaks down spandex, and the fit is the whole point.',
   },
   {
     n: '04',
@@ -89,8 +89,7 @@ export default function CarePage() {
         <Reveal>
           <p className="m-0 max-w-[46ch] text-[17px] leading-relaxed text-bone">
             A combed cotton, nylon, and spandex blend wants a standard gentle
-            routine — nothing precious, nothing complicated. Four rules, and
-            the bag does most of the work.
+            routine. Four rules and the bag does most of the work.
           </p>
         </Reveal>
 
