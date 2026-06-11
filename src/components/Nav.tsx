@@ -15,7 +15,7 @@ export default function Nav() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.65, duration: 0.6, ease: 'easeOut' }}
     >
-      <div className="flex items-center justify-between gap-4">
+      <div className="relative flex items-center justify-between gap-4">
         <a
           href="./"
           className="flex items-center gap-3 rounded-full py-3.5 pl-6 pr-8 backdrop-blur"
@@ -28,7 +28,7 @@ export default function Nav() {
         </a>
 
         <div
-          className="hidden items-center gap-1 rounded-full px-3 py-2 backdrop-blur md:flex"
+          className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-1 rounded-full px-3 py-2 backdrop-blur md:flex"
           style={{ background: 'rgba(43,33,26,0.85)' }}
         >
           {NAV_LINKS.map(([label, href]) => (
