@@ -12,7 +12,7 @@ const BLOCKS = [
   {
     n: '01',
     title: 'the bag it ships in',
-    body: "every set arrives inside a fine-mesh wash bag — packaging that's part of the product. it protects your socks in the machine, packs your delicates for travel, and never sees a trash can.",
+    body: 'every set arrives inside a fine-mesh wash bag, and we mean for you to keep it. it protects your socks in the machine, packs your delicates when you travel, and never sees a trash can.',
     // PLACEHOLDER: laundromat / laundry texture
     img: 'https://images.unsplash.com/photo-1567113463300-102a7eb3cb26?auto=format&fit=crop&w=1600&q=70&sat=-40',
     alt: 'mesh laundry bag placeholder',
@@ -20,7 +20,7 @@ const BLOCKS = [
   {
     n: '02',
     title: 'combed cotton',
-    body: 'the short, rough fibers are stripped out before the yarn is ever spun — the ones responsible for pilling and that scratchy first-wash feeling. day three hundred feels like day one.',
+    body: 'combing strips the short, rough fibers out before the yarn is ever spun. those little fibers are what pill, what scratch, and what make a sock look old by its third wash. without them, day three hundred feels like day one.',
     // PLACEHOLDER: knit / cotton fabric close-up
     img: 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=1600&q=70&sat=-40',
     alt: 'cotton knit texture placeholder',
@@ -28,7 +28,7 @@ const BLOCKS = [
   {
     n: '03',
     title: 'the fit',
-    body: "nylon for structure, spandex for hold. snug without squeezing, no calf marks, and elastic that doesn't die by month two.",
+    body: "nylon gives it structure and spandex gives it hold, so it stays up on its own without squeezing. no calf marks, and none of that month-two elastic surrender.",
     // PLACEHOLDER: socks / legs
     img: 'https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?auto=format&fit=crop&w=1600&q=70&sat=-40',
     alt: 'crew socks placeholder',

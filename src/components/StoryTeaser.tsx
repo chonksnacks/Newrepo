@@ -60,8 +60,9 @@ export default function StoryTeaser() {
             },
           }}
         >
-          combed cotton instead of the kind that pills. a fit that holds
-          without leaving marks. a sock worth keeping, designed in new york.
+          combed cotton instead of the kind that pills, and a fit that holds
+          on without digging into your calves. a sock worth keeping,
+          designed in new york.
         </motion.p>
         <motion.a
           href="story.html"

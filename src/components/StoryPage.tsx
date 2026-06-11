@@ -184,8 +184,9 @@ export default function StoryPage() {
           <Chapter n="01" title="the bad sock" />
 
           <Beat>
-            And two dudes scratching their heads. Not catastrophically bad —
-            just the kind of bad we got too comfortable with.
+            And two dudes scratching their heads. Not catastrophically bad,
+            just the kind of bad everyone seems to have gotten comfortable
+            with.
           </Beat>
           <Beat>
             The cotton that pills after a few washes. The elastic that grips
@@ -210,11 +211,12 @@ export default function StoryPage() {
             caption="the two of us, mid-argument about a cuff"
             />
           <Beat>
-            Months of meticulous research. Testing almost every sock on
-            Amazon. The answer: combed cotton — the short, rough fibers
-            stripped out before they're ever woven in. They're the culprits
-            behind pilling, that scratchy feeling, and why regular socks look
-            a year old by their third wash.
+            The research phase was months of buying and wearing nearly every
+            sock Amazon sells. What we landed on was combed cotton, which
+            strips out the short, rough fibers before they're ever woven in.
+            Those fibers are the culprits behind pilling, that scratchy
+            feeling, and why regular socks look a year old by their third
+            wash.
           </Beat>
           <Snapshot
             src="story/samples.webp"
@@ -222,9 +224,9 @@ export default function StoryPage() {
             caption="the audition pile — tagged, tested, mostly rejected"
             />
           <Beat>
-            We blend it with nylon for durability and spandex for the fit:
-            snug without squeezing, structured but silky soft. Pillowy on day
-            one. Identical on day three hundred.
+            We blend it with nylon for durability and spandex for the fit,
+            which lands snug without ever squeezing. It feels pillowy on day
+            one and exactly the same on day three hundred.
           </Beat>
           <Beat>
             At the gym. At the office. On a slow jog on a cold October
@@ -237,21 +239,21 @@ export default function StoryPage() {
           <Beat>
             We were just as frustrated by what happens after you buy a good
             sock. Wash it wrong, it pills. Throw it loose in the machine, it
-            disappears. So we built the solution into the packaging.
+            disappears. So we built the solution into the packaging itself.
           </Beat>
           <Beat>
             Every pair ships inside a fine-mesh wash bag. Travel in it,
-            protect your socks in it, wash your other delicates in it. It's
-            not packaging you throw away — it's part of the product, and part
-            of Everyday Crew's soul.
+            protect your socks in it, wash your other delicates in it. It
+            isn't packaging you throw away; it's part of the product, and
+            part of Everyday Crew's soul.
           </Beat>
 
           <Chapter n="04" title="the crew" />
 
           <Beat>
-            Building something new is scary. We won't pretend it isn't. But
-            we're not building this for ourselves — we're building it for the
-            person who's been settling for "good enough" for way too long.
+            Building something new is scary, and we won't pretend it isn't.
+            But we aren't building this for ourselves. We're building it for
+            the person who's been settling for "good enough" way too long.
           </Beat>
           <Beat>
             For the guy who buys a sh*tty 12-pack at the drug store because he

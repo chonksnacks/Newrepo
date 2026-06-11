@@ -93,9 +93,9 @@ export default function CarePage() {
 
         <Reveal>
           <p className="m-0 max-w-[46ch] text-[17px] leading-relaxed text-bone">
-            85% combed cotton, 10% nylon, 5% spandex — a blend that wants a
-            standard gentle routine. Four rules and the bag does most of the
-            work.
+            85% combed cotton, 10% nylon, 5% spandex. The blend wants a
+            standard gentle routine, and the bag does most of the work.
+            Four rules.
           </p>
         </Reveal>
 
