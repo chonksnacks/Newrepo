@@ -1,6 +1,6 @@
 import Nav from './components/Nav'
 import CrewCover from './components/CrewSection'
-import Hero from './components/Hero'
+import SeasonsSection from './components/SeasonsSection'
 import StoryTeaser from './components/StoryTeaser'
 import WashBag from './components/WashBag'
 import ShopCta from './components/ShopCta'
@@ -11,7 +11,7 @@ function App() {
       <Nav />
       <main>
         <CrewCover />
-        <Hero />
+        <SeasonsSection />
         <StoryTeaser />
         <WashBag />
         <ShopCta />
