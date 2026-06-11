@@ -3,14 +3,14 @@ import type { Variants } from 'framer-motion'
 import { EASE } from './media'
 
 // Square crew photos live in public/crew/ — see public/crew/README.md for the
-// expected filenames. Grid order (desktop): office, superhero, gym / cowboy,
+// expected filenames. Grid order (desktop): office, superhero, gym / cowgirl,
 // [text], robot / firefighter, santa, ballerina.
 const CELLS: Array<{ file: string; alt: string }> = [
   { file: 'office.webp', alt: 'crew socks at the office' },
   { file: 'superhero.webp', alt: 'crew socks on a superhero' },
   { file: 'girl_blank.webp', alt: 'crew socks at the gym' },
-  { file: 'cowbow.webp', alt: 'crew socks on a cowboy' },
-  { file: 'robot.webp', alt: 'crew socks on a robot' },
+  { file: 'cowgirl.webp', alt: 'crew socks on a cowgirl' },
+  { file: 'robot2.webp', alt: 'crew socks on a robot' },
   { file: 'firefighter.webp', alt: 'crew socks on a firefighter' },
   { file: 'santa.webp', alt: 'crew socks on santa' },
   { file: 'ballerina.webp', alt: 'crew socks on a ballerina' },
