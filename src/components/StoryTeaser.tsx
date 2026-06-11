@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
-import { EASE, GRAIN, POSTER, TINT } from './media'
+import SmoothLoopVideo from './SmoothLoopVideo'
+import { EASE, GRAIN, TINT } from './media'
 
 // Same Pexels walking clip as the hero — the teaser shares its energy.
 // TODO: replace with EDC brand footage (see note in Hero.tsx).
@@ -9,16 +10,10 @@ export default function StoryTeaser() {
   return (
     <section className="relative h-[88vh] w-full snap-start overflow-hidden bg-espresso md:grid md:grid-cols-2">
       {/* right half: living imagery (background on mobile) */}
-      <div className="absolute inset-0 md:static md:order-2 md:overflow-hidden">
-        <video
-          className="absolute inset-0 h-full w-full object-cover md:relative"
+      <div className="absolute inset-0 md:relative md:order-2 md:overflow-hidden">
+        <SmoothLoopVideo
+          className="absolute inset-0 h-full w-full object-cover"
           src={TEASER_VIDEO}
-          poster={POSTER}
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="metadata"
         />
         <div aria-hidden="true" className="absolute inset-0" style={{ background: TINT }} />
       </div>

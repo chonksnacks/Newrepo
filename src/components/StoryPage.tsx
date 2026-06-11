@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import Logo from './Logo'
-import { EASE, GRAIN, POSTER, TINT } from './media'
+import SmoothLoopVideo from './SmoothLoopVideo'
+import { EASE, GRAIN, TINT } from './media'
 
 // Same Pexels walking clip as the hero keeps the story page in the same world.
 // TODO: replace with EDC brand footage (see note in Hero.tsx).
@@ -74,14 +75,9 @@ export default function StoryPage() {
         {/* sticky media column — the environment stays alive while you read */}
         <div className="relative hidden md:block">
           <div className="sticky top-0 h-screen overflow-hidden">
-            <video
+            <SmoothLoopVideo
               className="absolute inset-0 h-full w-full object-cover"
               src={STORY_VIDEO}
-              poster={POSTER}
-              autoPlay
-              loop
-              muted
-              playsInline
             />
             <div aria-hidden="true" className="absolute inset-0" style={{ background: TINT }} />
             <div
