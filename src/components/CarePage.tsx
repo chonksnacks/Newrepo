@@ -20,7 +20,7 @@ const STEPS = [
     n: '03',
     Icon: NoBleach,
     title: 'no bleach',
-    body: 'bleach breaks down spandex, and the fit is the whole point. skip it.',
+    body: 'bleach breaks down spandex, and the fit is the whole point.',
   },
   {
     n: '04',
@@ -94,8 +94,8 @@ export default function CarePage() {
         <Reveal>
           <p className="m-0 max-w-[46ch] text-[17px] leading-relaxed text-bone">
             85% combed cotton, 10% nylon, 5% spandex — a blend that wants a
-            standard gentle routine. Nothing precious, nothing complicated.
-            Four rules, and the bag does most of the work.
+            standard gentle routine. Four rules and the bag does most of the
+            work.
           </p>
         </Reveal>
 
