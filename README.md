@@ -1,6 +1,6 @@
 # everyday crew
 
-Site for Everyday Crew — a premium everyday sock brand made in NYC.
+Site for Everyday Crew — a premium everyday sock brand designed in NYC.
 
 React + TypeScript + Tailwind CSS v4 + Framer Motion, built with Vite.
 

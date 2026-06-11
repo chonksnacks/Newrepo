@@ -57,7 +57,7 @@ export default function ShopCta() {
             },
           }}
         >
-          made in new york. shipped in a wash bag. built to be the last sock
+          designed in new york. shipped in a wash bag. built to be the last sock
           decision you make.
         </motion.p>
         <motion.a
