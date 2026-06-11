@@ -4,7 +4,7 @@ import { EASE } from './media'
 
 // Square crew photos live in public/crew/ — see public/crew/README.md for the
 // expected filenames. Grid order (desktop): office, superhero, gym / cowboy,
-// [text], robot / firefighter, santa, teen.
+// [text], robot / firefighter, santa, ballerina.
 const CELLS: Array<{ file: string; alt: string }> = [
   { file: 'office.webp', alt: 'crew socks at the office' },
   { file: 'superhero.webp', alt: 'crew socks on a superhero' },
@@ -13,7 +13,7 @@ const CELLS: Array<{ file: string; alt: string }> = [
   { file: 'robot.webp', alt: 'crew socks on a robot' },
   { file: 'firefighter.webp', alt: 'crew socks on a firefighter' },
   { file: 'santa.webp', alt: 'crew socks on santa' },
-  { file: 'teen.webp', alt: 'crew socks on a teen' },
+  { file: 'ballerina.webp', alt: 'crew socks on a ballerina' },
 ]
 
 function CrewImage({ cell, index }: { cell: (typeof CELLS)[number]; index: number }) {
