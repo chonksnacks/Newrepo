@@ -19,8 +19,9 @@ runs ESLint; `npm run preview` serves the built site locally.
 Two HTML routes (Vite multi-page build, see `vite.config.ts`):
 
 - `index.html` → `src/App.tsx` — the landing page:
-  crew cover → seasons crossfade → story teaser → differentiators → shop CTA
+  crew cover → seasons crossfade → story teaser → care teaser → differentiators → shop CTA
 - `story.html` → `src/story.tsx` — the editorial origin-story page
+- `care.html` → `src/care.tsx` — the care guide
 
 ## Layout
 

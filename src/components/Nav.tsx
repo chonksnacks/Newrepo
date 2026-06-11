@@ -4,8 +4,7 @@ import Logo from './Logo'
 const NAV_LINKS: Array<[string, string]> = [
   ['shop', '/'],
   ['our story', 'story.html'],
-  ['journal', '/'],
-  ['care', '/'],
+  ['care', 'care.html'],
 ]
 
 export default function Nav() {

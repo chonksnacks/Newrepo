@@ -13,6 +13,7 @@ export default defineConfig({
       input: {
         main: resolve(__dirname, 'index.html'),
         story: resolve(__dirname, 'story.html'),
+        care: resolve(__dirname, 'care.html'),
       },
     },
   },
