@@ -14,8 +14,8 @@ function App() {
         <CrewCover />
         <SeasonsSection />
         <StoryTeaser />
-        <CareTeaser />
         <Differentiators />
+        <CareTeaser />
         <ShopCta />
       </main>
     </>

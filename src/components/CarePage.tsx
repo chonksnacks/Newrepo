@@ -1,25 +1,30 @@
 import { motion } from 'framer-motion'
 import Logo from './Logo'
+import { NoBleach, NoIron, TumbleLow, WashCold } from './CareSymbols'
 import { EASE, GRAIN } from './media'
 
 const STEPS = [
   {
     n: '01',
+    Icon: WashCold,
     title: 'machine wash cold',
     body: "30°c, with the rest of your laundry. the mesh bag goes in with the socks inside — that's what it's for.",
   },
   {
     n: '02',
+    Icon: TumbleLow,
     title: 'tumble dry low',
     body: 'no need to pull them out of the bag between the washer and the dryer. straight through, bag and all.',
   },
   {
     n: '03',
+    Icon: NoBleach,
     title: 'no bleach',
     body: 'bleach breaks down spandex, and the fit is the whole point. skip it.',
   },
   {
     n: '04',
+    Icon: NoIron,
     title: 'no ironing',
     body: "they're socks. please don't iron them.",
   },
@@ -88,9 +93,9 @@ export default function CarePage() {
 
         <Reveal>
           <p className="m-0 max-w-[46ch] text-[17px] leading-relaxed text-bone">
-            A combed cotton, nylon, and spandex blend wants a standard gentle
-            routine — nothing precious, nothing complicated. Four rules, and
-            the bag does most of the work.
+            85% combed cotton, 10% nylon, 5% spandex — a blend that wants a
+            standard gentle routine. Nothing precious, nothing complicated.
+            Four rules, and the bag does most of the work.
           </p>
         </Reveal>
 
@@ -103,15 +108,31 @@ export default function CarePage() {
                 </span>
                 <span aria-hidden="true" className="h-px w-12 bg-clay/50" />
               </span>
-              <h2 className="hero-title m-0 text-3xl font-medium lowercase text-cream md:text-5xl">
-                {step.title}
-              </h2>
+              <div className="flex items-center gap-5">
+                <step.Icon className="h-9 w-9 shrink-0 text-bone md:h-11 md:w-11" />
+                <h2 className="hero-title m-0 text-3xl font-medium lowercase text-cream md:text-5xl">
+                  {step.title}
+                </h2>
+              </div>
               <p className="m-0 max-w-[46ch] text-[15px] leading-relaxed text-bone">
                 {step.body}
               </p>
             </Reveal>
           ))}
         </div>
+
+        <Reveal className="flex flex-col gap-5 pt-12">
+          <span className="flex items-center gap-4">
+            <span aria-hidden="true" className="h-px w-12 bg-clay/50" />
+            <span className="text-xs uppercase tracking-[0.14em] text-bone/80">
+              your wash bag, off duty
+            </span>
+          </span>
+          <p className="m-0 max-w-[46ch] text-[15px] leading-relaxed text-bone">
+            between laundry days it moonlights as a travel pouch, a gym
+            organizer, and a daily carry. it never has to be just packaging.
+          </p>
+        </Reveal>
 
         <Reveal className="pt-10">
           <p className="hero-title m-0 max-w-[16em] text-3xl font-normal italic lowercase text-cream md:text-4xl">

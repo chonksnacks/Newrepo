@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion'
+import { NoBleach, NoIron, TumbleLow, WashCold } from './CareSymbols'
 import { EASE, GRAIN } from './media'
 
-// quiet care beat between the story and the differentiators — solid espresso
-// so the ramp below starts clean
+// quiet care beat between the differentiators and the CTA — solid chestnut,
+// a pause inside the espresso-to-cream ramp
 export default function CareTeaser() {
   return (
-    <section className="relative flex w-full flex-col items-center gap-5 overflow-hidden bg-espresso px-8 py-24 text-center md:py-32">
+    <section className="relative flex w-full flex-col items-center gap-5 overflow-hidden bg-chestnut px-8 py-24 text-center md:py-32">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 opacity-[0.04]"
@@ -42,9 +43,24 @@ export default function CareTeaser() {
             <em className="font-normal italic">in too.</em>
           </motion.h2>
         </span>
+        <motion.div
+          className="flex items-center gap-5 py-1 text-bone/80"
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: { delay: 0.4, duration: 0.8, ease: EASE },
+            },
+          }}
+        >
+          <WashCold className="h-6 w-6" />
+          <TumbleLow className="h-6 w-6" />
+          <NoBleach className="h-6 w-6" />
+          <NoIron className="h-6 w-6" />
+        </motion.div>
         <motion.a
           href="care.html"
-          className="text-[15px] text-cream transition-colors duration-300 hover:text-clay"
+          className="text-[15px] text-cream transition-colors duration-300 hover:text-bone"
           variants={{
             hidden: { opacity: 0 },
             visible: {
