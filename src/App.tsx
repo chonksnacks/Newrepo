@@ -1,6 +1,7 @@
 import Nav from './components/Nav'
 import CrewCover from './components/CrewCover'
 import SeasonsSection from './components/SeasonsSection'
+import Breather from './components/Breather'
 import StoryTeaser from './components/StoryTeaser'
 import Colorways from './components/Colorways'
 import Differentiators from './components/Differentiators'
@@ -14,6 +15,7 @@ function App() {
       <main>
         <CrewCover />
         <SeasonsSection />
+        <Breather />
         <StoryTeaser />
         <Colorways />
         <Differentiators />

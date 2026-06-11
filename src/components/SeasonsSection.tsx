@@ -59,7 +59,7 @@ export default function SeasonsSection() {
         className="absolute inset-0"
         style={{
           background:
-            'radial-gradient(ellipse 55% 45% at 50% 50%, rgba(43,33,26,0.45), rgba(43,33,26,0) 75%), linear-gradient(to bottom, rgba(43,33,26,0.25), rgba(43,33,26,0) 30%, rgba(43,33,26,0) 70%, rgba(43,33,26,0.35))',
+            'radial-gradient(ellipse 55% 45% at 50% 50%, rgba(43,33,26,0.45), rgba(43,33,26,0) 75%), linear-gradient(to bottom, rgba(43,33,26,0.25), rgba(43,33,26,0) 30%, rgba(43,33,26,0) 62%, rgba(43,33,26,0.55) 88%, #2B211A 100%)',
         }}
       />
 
