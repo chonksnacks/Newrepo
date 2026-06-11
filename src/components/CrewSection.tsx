@@ -32,7 +32,7 @@ function CrewImage({ cell, index }: { cell: (typeof CELLS)[number]; index: numbe
         src={`crew/${cell.file}`}
         alt={cell.alt}
         className="h-full w-full object-cover"
-        loading="lazy"
+        loading={index < 4 ? 'eager' : 'lazy'}
       />
     </motion.div>
   )
@@ -52,12 +52,12 @@ function CrewHeading({ className = '' }: { className?: string }) {
   return (
     <div className={`flex flex-col items-center justify-center gap-2 text-center ${className}`}>
       <span className="block overflow-hidden">
-        <motion.h2
+        <motion.h1
           className="hero-title m-0 pb-[0.2em] -mb-[0.1em] text-2xl font-medium lowercase text-espresso md:text-3xl"
           variants={rise}
         >
           everyone's welcome to the crew
-        </motion.h2>
+        </motion.h1>
       </span>
       <motion.span
         className="hero-title text-sm uppercase tracking-wide text-chestnut md:text-base"
@@ -75,15 +75,16 @@ function CrewHeading({ className = '' }: { className?: string }) {
   )
 }
 
-export default function CrewSection() {
+// the opening screen: the crew grid is the cover, the videos come after
+export default function CrewCover() {
   return (
-    <section className="w-full snap-start bg-cream py-24 md:py-32">
-      {/* desktop: 3x3 grid, text in the center cell */}
+    <section className="relative flex min-h-screen w-full snap-start flex-col justify-center bg-cream pb-20 pt-28 md:h-screen md:pb-16 md:pt-24">
+      {/* desktop: 3x3 grid sized to fit the viewport, text in the center cell */}
       <motion.div
-        className="mx-auto hidden max-w-[960px] grid-cols-3 gap-3 px-6 md:grid"
+        className="mx-auto hidden w-full grid-cols-3 gap-3 px-6 md:grid"
+        style={{ maxWidth: 'min(880px, calc(100vh - 200px))' }}
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.35 }}
+        animate="visible"
       >
         {CELLS.slice(0, 4).map((cell, i) => (
           <CrewImage key={cell.file} cell={cell} index={i} />
@@ -100,8 +101,7 @@ export default function CrewSection() {
       <motion.div
         className="flex flex-col gap-8 px-6 md:hidden"
         initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.2 }}
+        animate="visible"
       >
         <CrewHeading />
         <div className="grid grid-cols-2 gap-3">
@@ -110,6 +110,11 @@ export default function CrewSection() {
           ))}
         </div>
       </motion.div>
+
+      <div className="pointer-events-none absolute bottom-5 left-0 right-0 hidden flex-col items-center gap-2 md:flex">
+        <span className="text-xs uppercase tracking-[0.12em] text-chestnut">scroll</span>
+        <span className="scroll-cue-line block h-8 w-px bg-clay" />
+      </div>
     </section>
   )
 }

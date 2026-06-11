@@ -45,7 +45,7 @@ export default function Nav() {
 
         <a
           href="/"
-          className="rounded-full bg-cream px-7 py-3.5 text-xs font-medium uppercase tracking-[0.12em] text-espresso transition-colors duration-300 hover:bg-bone"
+          className="rounded-full bg-espresso px-7 py-3.5 text-xs font-medium uppercase tracking-[0.12em] text-cream transition-colors duration-300 hover:bg-chestnut"
         >
           shop socks
         </a>

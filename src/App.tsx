@@ -1,7 +1,7 @@
 import Nav from './components/Nav'
+import CrewCover from './components/CrewSection'
 import Hero from './components/Hero'
 import StoryTeaser from './components/StoryTeaser'
-import CrewSection from './components/CrewSection'
 import WashBag from './components/WashBag'
 import ShopCta from './components/ShopCta'
 
@@ -10,9 +10,9 @@ function App() {
     <>
       <Nav />
       <main>
+        <CrewCover />
         <Hero />
         <StoryTeaser />
-        <CrewSection />
         <WashBag />
         <ShopCta />
       </main>
