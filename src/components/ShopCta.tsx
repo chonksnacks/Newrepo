@@ -4,7 +4,7 @@ import { EASE, GRAIN } from './media'
 export default function ShopCta() {
   return (
     <section
-      className="relative flex h-screen w-full snap-start flex-col items-center justify-center gap-6 overflow-hidden px-8 text-center"
+      className="relative flex h-screen w-full flex-col items-center justify-center gap-6 overflow-hidden px-8 text-center"
       // continues the ramp: chestnut -> clay -> bone -> the cover's cream
       style={{
         background:

@@ -78,7 +78,7 @@ function Block({ block, flip }: { block: (typeof BLOCKS)[number]; flip: boolean 
 export default function Differentiators() {
   return (
     <section
-      className="relative w-full snap-start px-8 py-24 md:px-16 md:py-36"
+      className="relative w-full px-8 py-24 md:px-16 md:py-36"
       // begins where the teaser's espresso ends and warms toward the CTA
       style={{ background: 'linear-gradient(to bottom, #2B211A 0%, #2B211A 30%, #6B4F3A 100%)' }}
     >

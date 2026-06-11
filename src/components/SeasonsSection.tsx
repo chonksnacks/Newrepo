@@ -36,7 +36,7 @@ export default function SeasonsSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative h-[75vh] w-full snap-start overflow-hidden bg-espresso md:h-[85vh]"
+      className="relative h-[75vh] w-full overflow-hidden bg-espresso md:h-[85vh]"
     >
       {/* all four layers stay mounted and preloaded — no swap, no flash */}
       {SEASONS.map((season, i) => (

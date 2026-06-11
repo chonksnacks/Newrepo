@@ -22,23 +22,6 @@ body,
   height: 100%;
 }
 
-/* gentle snapping: proximity (not mandatory) so the scroll never feels
-   trapped, and the 88vh mid sections let the next chapter peek ~12% */
-html {
-  scroll-snap-type: y proximity;
-}
-
-/* the story page is a long editorial scroll — no snapping there */
-html.no-snap {
-  scroll-snap-type: none;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-snap-type: none;
-  }
-}
-
 body {
   margin: 0;
   font-family: 'Inter', system-ui, sans-serif;

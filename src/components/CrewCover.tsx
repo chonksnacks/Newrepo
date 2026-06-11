@@ -78,7 +78,7 @@ function CrewHeading({ className = '' }: { className?: string }) {
 // the opening screen: the crew grid is the cover, the videos come after
 export default function CrewCover() {
   return (
-    <section className="relative flex min-h-screen w-full snap-start flex-col justify-center bg-cream pb-20 pt-28 md:h-screen md:pb-16 md:pt-24">
+    <section className="relative flex min-h-screen w-full flex-col justify-center bg-cream pb-20 pt-28 md:h-screen md:pb-16 md:pt-24">
       {/* desktop: 3x3 grid sized to fit the viewport, text in the center cell */}
       <motion.div
         className="mx-auto hidden w-full grid-cols-3 gap-3 px-6 md:grid"

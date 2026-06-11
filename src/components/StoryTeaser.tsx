@@ -8,7 +8,7 @@ const TEASER_VIDEO = 'https://www.pexels.com/download/video/5665059/'
 
 export default function StoryTeaser() {
   return (
-    <section className="relative h-[88vh] w-full snap-start overflow-hidden bg-espresso md:grid md:grid-cols-2">
+    <section className="relative h-[88vh] w-full overflow-hidden bg-espresso md:grid md:grid-cols-2">
       {/* right half: living imagery (background on mobile) */}
       <div className="absolute inset-0 md:relative md:order-2 md:overflow-hidden">
         <SmoothLoopVideo
