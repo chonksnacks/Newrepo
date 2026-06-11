@@ -6,7 +6,7 @@ import { EASE, GRAIN } from './media'
 // summer -> fall. Sources are the uploaded PNGs compressed to WebP.
 const SEASONS = ['winter', 'spring', 'summer', 'fall'] as const
 
-const HOLD_MS = 5000
+const HOLD_MS = 3500
 const FADE_S = 1.2
 
 export default function SeasonsSection() {
