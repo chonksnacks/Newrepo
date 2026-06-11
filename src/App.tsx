@@ -3,7 +3,6 @@ import CrewCover from './components/CrewCover'
 import SeasonsSection from './components/SeasonsSection'
 import StoryTeaser from './components/StoryTeaser'
 import Differentiators from './components/Differentiators'
-import WashBag from './components/WashBag'
 import ShopCta from './components/ShopCta'
 
 function App() {
@@ -15,7 +14,6 @@ function App() {
         <SeasonsSection />
         <StoryTeaser />
         <Differentiators />
-        <WashBag />
         <ShopCta />
       </main>
     </>
