@@ -73,6 +73,36 @@ export default function ShopCta() {
         >
           shop socks
         </motion.a>
+
+        {/* the cover's joke gets its payoff: the crew walks the reader out */}
+        <motion.figure
+          className="m-0 mt-10 flex w-full max-w-[560px] flex-col items-center gap-3 md:mt-14"
+          variants={{
+            hidden: { opacity: 0, y: 16 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: { delay: 0.8, duration: 0.9, ease: EASE },
+            },
+          }}
+        >
+          <img
+            src="crew/inline.webp"
+            alt="the robot, santa, and the ballerina walking together in crew socks"
+            loading="lazy"
+            className="w-full"
+            style={{
+              maskImage:
+                'linear-gradient(to right, transparent, black 12%, black 88%, transparent)',
+              WebkitMaskImage:
+                'linear-gradient(to right, transparent, black 12%, black 88%, transparent)',
+              mixBlendMode: 'multiply',
+            }}
+          />
+          <figcaption className="hero-title text-lg italic lowercase text-espresso/70 md:text-xl">
+            the crew's waiting.
+          </figcaption>
+        </motion.figure>
       </motion.div>
     </section>
   )
