@@ -93,9 +93,9 @@ export default function ShopCta() {
             className="w-full"
             style={{
               maskImage:
-                'linear-gradient(to right, transparent, black 12%, black 88%, transparent)',
+                'linear-gradient(to bottom, black 70%, transparent 100%)',
               WebkitMaskImage:
-                'linear-gradient(to right, transparent, black 12%, black 88%, transparent)',
+                'linear-gradient(to bottom, black 70%, transparent 100%)',
               mixBlendMode: 'multiply',
             }}
           />
