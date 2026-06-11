@@ -6,14 +6,14 @@ import { EASE } from './media'
 // expected filenames. Grid order (desktop): office, superhero, gym / cowboy,
 // [text], robot / firefighter, santa, teen.
 const CELLS: Array<{ file: string; alt: string }> = [
-  { file: 'office.png', alt: 'crew socks at the office' },
-  { file: 'superhero.png', alt: 'crew socks on a superhero' },
-  { file: 'girl_blank.png', alt: 'crew socks at the gym' },
-  { file: 'cowbow.png', alt: 'crew socks on a cowboy' },
-  { file: 'robot.png', alt: 'crew socks on a robot' },
-  { file: 'firefighter.png', alt: 'crew socks on a firefighter' },
-  { file: 'santa.png', alt: 'crew socks on santa' },
-  { file: 'teen.png', alt: 'crew socks on a teen' },
+  { file: 'office.webp', alt: 'crew socks at the office' },
+  { file: 'superhero.webp', alt: 'crew socks on a superhero' },
+  { file: 'girl_blank.webp', alt: 'crew socks at the gym' },
+  { file: 'cowbow.webp', alt: 'crew socks on a cowboy' },
+  { file: 'robot.webp', alt: 'crew socks on a robot' },
+  { file: 'firefighter.webp', alt: 'crew socks on a firefighter' },
+  { file: 'santa.webp', alt: 'crew socks on santa' },
+  { file: 'teen.webp', alt: 'crew socks on a teen' },
 ]
 
 function CrewImage({ cell, index }: { cell: (typeof CELLS)[number]; index: number }) {
