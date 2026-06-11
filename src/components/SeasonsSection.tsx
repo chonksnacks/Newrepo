@@ -15,6 +15,8 @@ export default function SeasonsSection() {
   // pause the cycle while the section is off-screen
   const onScreen = useInView(sectionRef, { amount: 0.25 })
   const [active, setActive] = useState(0)
+  // bumping this restarts the cycle timer after a manual jump
+  const [resetToken, setResetToken] = useState(0)
   const cycling = !reducedMotion && onScreen
 
   useEffect(() => {
@@ -24,7 +26,12 @@ export default function SeasonsSection() {
       HOLD_MS,
     )
     return () => clearInterval(id)
-  }, [cycling])
+  }, [cycling, resetToken])
+
+  const jumpTo = (i: number) => {
+    setActive(i)
+    setResetToken((t) => t + 1)
+  }
 
   return (
     <section
@@ -86,17 +93,37 @@ export default function SeasonsSection() {
         </span>
       </motion.div>
 
-      {/* quiet season dots */}
+      {/* story-style season timeline: the active bar fills over the hold */}
       {!reducedMotion && (
-        <div className="absolute bottom-6 left-0 right-0 z-10 flex items-center justify-center gap-2.5">
+        <div className="absolute bottom-6 left-0 right-0 z-10 flex items-end justify-center gap-5 md:gap-8">
           {SEASONS.map((season, i) => (
-            <span
+            <button
               key={season}
-              aria-label={season}
-              className={`block h-1 w-1 rounded-full transition-colors duration-500 ${
-                i === active ? 'bg-cream' : 'bg-bone/40'
-              }`}
-            />
+              type="button"
+              aria-label={`show ${season}`}
+              aria-current={i === active}
+              onClick={() => jumpTo(i)}
+              className="group flex w-14 flex-col items-center gap-2 md:w-20"
+            >
+              <span
+                className={`text-[10px] uppercase tracking-[0.14em] transition-colors duration-500 md:text-xs ${
+                  i === active ? 'text-cream' : 'text-bone/70 group-hover:text-bone'
+                }`}
+              >
+                {season}
+              </span>
+              <span className="block h-px w-full overflow-hidden bg-bone/30">
+                {i === active && (
+                  <motion.span
+                    key={`${season}-${resetToken}-${active}`}
+                    className="block h-full w-full origin-left bg-cream"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: onScreen ? 1 : 0 }}
+                    transition={{ duration: HOLD_MS / 1000, ease: 'linear' }}
+                  />
+                )}
+              </span>
+            </button>
           ))}
         </div>
       )}
