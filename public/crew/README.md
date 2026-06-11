@@ -1,6 +1,10 @@
 # crew images
 
-Drop the square crew photos in this folder with these exact names:
+The 3x3 cover-grid photos. 800px square WebP (quality 82) — convert any
+new PNG uploads before adding (see the Images section in the root README).
+
+Filenames the grid expects (order: office, superhero, gym / cowboy,
+[center text cell], robot / firefighter, santa, teen):
 
 - office.webp
 - superhero.webp
@@ -10,5 +14,3 @@ Drop the square crew photos in this folder with these exact names:
 - firefighter.webp
 - santa.webp
 - teen.webp
-
-They render in the "everyone's welcome to the crew" grid on the landing page.

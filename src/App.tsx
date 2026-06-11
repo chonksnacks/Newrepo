@@ -1,5 +1,5 @@
 import Nav from './components/Nav'
-import CrewCover from './components/CrewSection'
+import CrewCover from './components/CrewCover'
 import SeasonsSection from './components/SeasonsSection'
 import StoryTeaser from './components/StoryTeaser'
 import WashBag from './components/WashBag'
