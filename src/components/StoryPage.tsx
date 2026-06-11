@@ -32,7 +32,7 @@ function WordsQuote({ text }: { text: string }) {
   const words = text.split(' ')
   return (
     <motion.blockquote
-      className="hero-title m-0 max-w-[16em] py-10 text-4xl font-normal italic lowercase text-cream md:py-16 md:text-6xl"
+      className="hero-title m-0 max-w-[16em] py-4 text-4xl font-normal italic lowercase text-cream md:py-6 md:text-6xl"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.6 }}
@@ -60,7 +60,7 @@ function WordsQuote({ text }: { text: string }) {
 
 function Chapter({ n, title }: { n: string; title: string }) {
   return (
-    <Reveal className="flex items-center gap-4 pt-16 first:pt-0">
+    <Reveal className="flex items-center gap-4 pt-10 first:pt-0">
       <span className="text-xs tracking-[0.14em] text-clay">{n}</span>
       <span aria-hidden="true" className="h-px w-12 bg-clay/50" />
       <span className="text-xs uppercase tracking-[0.14em] text-bone/80">
@@ -208,7 +208,7 @@ export default function StoryPage() {
           </Beat>
           <BigLine>we didn't think that was good enough.</BigLine>
 
-          <WordsQuote text="make a sock worth keeping." />
+          <WordsQuote text="we wanted to make a sock worth keeping." />
 
           <Chapter n="02" title="the fix" />
 
