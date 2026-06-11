@@ -1,10 +1,10 @@
-import { motion } from 'framer-motion'
+import { motion, useScroll, useSpring } from 'framer-motion'
 import Logo from './Logo'
 import SmoothLoopVideo from './SmoothLoopVideo'
 import { EASE, GRAIN, TINT } from './media'
 
-// Same Pexels walking clip as the hero keeps the story page in the same world.
-// TODO: replace with EDC brand footage (see note in Hero.tsx).
+// Same Pexels walking clip as the teaser keeps the story page in the same
+// world. TODO: replace with EDC brand footage (see note in StoryTeaser.tsx).
 const STORY_VIDEO = 'https://www.pexels.com/download/video/5665059/'
 
 function Reveal({
@@ -27,20 +27,65 @@ function Reveal({
   )
 }
 
-function PullQuote({ children }: { children: React.ReactNode }) {
+// big quotes assemble word by word as they enter the viewport
+function WordsQuote({ text }: { text: string }) {
+  const words = text.split(' ')
   return (
-    <Reveal className="py-10 md:py-16">
-      <blockquote className="hero-title m-0 max-w-[16em] text-4xl font-normal italic lowercase text-cream md:text-6xl">
-        {children}
-      </blockquote>
+    <motion.blockquote
+      className="hero-title m-0 max-w-[16em] py-10 text-4xl font-normal italic lowercase text-cream md:py-16 md:text-6xl"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.6 }}
+    >
+      {words.map((word, i) => (
+        <motion.span
+          key={i}
+          className="inline-block whitespace-pre"
+          variants={{
+            hidden: { opacity: 0, y: 14 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: { delay: i * 0.08, duration: 0.6, ease: EASE },
+            },
+          }}
+        >
+          {word}
+          {i < words.length - 1 ? ' ' : ''}
+        </motion.span>
+      ))}
+    </motion.blockquote>
+  )
+}
+
+function Chapter({ n, title }: { n: string; title: string }) {
+  return (
+    <Reveal className="flex items-center gap-4 pt-16 first:pt-0">
+      <span className="text-xs tracking-[0.14em] text-clay">{n}</span>
+      <span aria-hidden="true" className="h-px w-12 bg-clay/50" />
+      <span className="text-xs uppercase tracking-[0.14em] text-bone/80">
+        {title}
+      </span>
     </Reveal>
   )
 }
 
-function Paragraph({ children }: { children: React.ReactNode }) {
+// one thought per beat — nobody ever faces a wall of text
+function Beat({ children }: { children: React.ReactNode }) {
   return (
     <Reveal>
-      <p className="m-0 max-w-[58ch] text-[17px] leading-relaxed text-bone">
+      <p className="m-0 max-w-[46ch] text-[17px] leading-relaxed text-bone">
+        {children}
+      </p>
+    </Reveal>
+  )
+}
+
+// punchline sentences get to be their own moment
+function BigLine({ children }: { children: React.ReactNode }) {
+  return (
+    <Reveal>
+      <p className="hero-title m-0 max-w-[18em] text-3xl font-medium lowercase text-cream md:text-4xl">
         {children}
       </p>
     </Reveal>
@@ -48,8 +93,18 @@ function Paragraph({ children }: { children: React.ReactNode }) {
 }
 
 export default function StoryPage() {
+  const { scrollYProgress } = useScroll()
+  const progress = useSpring(scrollYProgress, { stiffness: 80, damping: 24 })
+
   return (
     <main className="bg-espresso text-cream">
+      {/* reading progress — quiet proof that this is short */}
+      <motion.div
+        aria-hidden="true"
+        className="fixed left-0 right-0 top-0 z-40 h-0.5 origin-left bg-clay"
+        style={{ scaleX: progress }}
+      />
+
       <nav className="fixed left-0 right-0 top-0 z-30 px-6 pt-6 md:px-10">
         <div className="flex items-center justify-between gap-4">
           <a
@@ -88,7 +143,7 @@ export default function StoryPage() {
           </div>
         </div>
 
-        <article className="relative flex flex-col gap-10 px-8 pb-32 pt-36 md:px-16 md:pt-44">
+        <article className="relative flex flex-col gap-8 px-8 pb-32 pt-36 md:px-16 md:pt-44">
           <div
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 opacity-[0.04]"
@@ -105,75 +160,79 @@ export default function StoryPage() {
             </h1>
           </Reveal>
 
-          <Paragraph>
-            And two dudes scratching their heads. Not catastrophically bad like
-            huge holes in the soles bad. Just the kind of bad we got too
-            comfortable with: the same cotton that pills after a few washes,
-            the elastic that holds too hard and gives you marks on your calves
-            but then gives out by month two, the sock that disappears into a
-            dimension between the washer and the dryer that you never see
-            again.
-          </Paragraph>
+          <Chapter n="01" title="the bad sock" />
 
-          <Paragraph>We didn't think that was good enough.</Paragraph>
+          <Beat>
+            And two dudes scratching their heads. Not catastrophically bad —
+            just the kind of bad we got too comfortable with.
+          </Beat>
+          <Beat>
+            The cotton that pills after a few washes. The elastic that grips
+            too hard, marks your calves, then gives out by month two. The sock
+            that vanishes into a dimension between the washer and the dryer,
+            never to be seen again.
+          </Beat>
+          <BigLine>we didn't think that was good enough.</BigLine>
 
-          <PullQuote>make a sock worth keeping.</PullQuote>
+          <WordsQuote text="make a sock worth keeping." />
 
-          <Paragraph>
+          <Chapter n="02" title="the fix" />
+
+          <Beat>
             We're two people based in New York, and we set out to do something
-            simple: make a sock worth keeping. The best version of the thing
-            you put on every single morning without thinking about it. Because
-            when it's right, you don't have to.
-          </Paragraph>
+            simple: make the best version of the thing you put on every single
+            morning without thinking about it. Because when it's right, you
+            don't have to.
+          </Beat>
+          <Beat>
+            Months of meticulous research. Testing almost every sock on
+            Amazon. The answer: combed cotton — the short, rough fibers
+            stripped out before they're ever woven in. They're the culprits
+            behind pilling, that scratchy feeling, and why regular socks look
+            a year old by their third wash.
+          </Beat>
+          <Beat>
+            We blend it with nylon for durability and spandex for the fit:
+            snug without squeezing, structured but silky soft. Pillowy on day
+            one. Identical on day three hundred.
+          </Beat>
+          <BigLine>
+            at the gym. at the office. on a slow jog on a cold october
+            morning. everywhere you show up, it shows up.
+          </BigLine>
 
-          <Paragraph>
-            After months of meticulous research and testing, buying almost
-            every sock on Amazon, we decided on combed cotton. Combed cotton
-            strips out the short, rough fibers before they're ever woven in —
-            these are the culprits responsible for pilling, that pestilent
-            scratchy feeling, and why regular socks look a year old by their
-            third wash. We blend it with nylon for durability and spandex for
-            that signature fit: snug without being too tight, structured but
-            silky soft. The result is a sock that feels pillowy on day one and
-            holds up the same way on day three hundred.
-          </Paragraph>
+          <WordsQuote text="and then there's the bag." />
 
-          <Paragraph>
-            We wanted it to work everywhere. At the gym. At the office. On a
-            slow jog on a cold October morning. We wanted Everyday Crew to show
-            up everywhere you do.
-          </Paragraph>
+          <Chapter n="03" title="the bag" />
 
-          <PullQuote>and then there's the bag.</PullQuote>
+          <Beat>
+            We were just as frustrated by what happens after you buy a good
+            sock. Wash it wrong, it pills. Throw it loose in the machine, it
+            disappears. So we built the solution into the packaging.
+          </Beat>
+          <Beat>
+            Every pair ships inside a fine-mesh wash bag. Travel in it,
+            protect your socks in it, wash your other delicates in it. It's
+            not packaging you throw away — it's part of the product, and part
+            of Everyday Crew's soul.
+          </Beat>
 
-          <Paragraph>
-            We were just as frustrated by what happens after you buy a sock as
-            we were by the sock itself. When you spend good money on a quality
-            sock, the same damn things always happen. You wash it wrong, it
-            pills. You throw it loose in the machine, it disappears. So we
-            built the solution into the packaging. Every pair of Everyday Crew
-            ships inside a functional and beautiful fine-mesh wash bag. Use it
-            to travel, use it to protect your socks in the wash, use it to wash
-            your other delicates. It's not just packaging you throw away. It's
-            part of the product and part of Everyday Crew's soul. We wanted
-            every small detail to be meaningful and practical.
-          </Paragraph>
+          <Chapter n="04" title="the crew" />
 
-          <Paragraph>
+          <Beat>
             Building something new is scary. We won't pretend it isn't. But
-            we're not building this for ourselves. We're building it for the
-            person who's been settling for "good enough" for way too long. For
-            the guy who buys a sh*tty 12-pack at the drug store because he
+            we're not building this for ourselves — we're building it for the
+            person who's been settling for "good enough" for way too long.
+          </Beat>
+          <Beat>
+            For the guy who buys a sh*tty 12-pack at the drug store because he
             finally lost the last pair he owned. For the person who gives a
             damn about the small things. For anyone who's ever lost a sock to
             the void and thought, genuinely, there has to be a better way.
-          </Paragraph>
+          </Beat>
+          <BigLine>there is. you found it. welcome to the crew.</BigLine>
 
-          <Paragraph>There is. You found it. Welcome to the crew.</Paragraph>
-
-          <PullQuote>
-            do the basics, do them right. that's the whole thing.
-          </PullQuote>
+          <WordsQuote text="do the basics, do them right. that's the whole thing." />
 
           <Reveal>
             <a
