@@ -86,19 +86,30 @@ export default function ShopCta() {
             },
           }}
         >
-          <img
-            src="crew/inline.webp"
-            alt="the robot, santa, and the ballerina walking together in crew socks"
-            loading="lazy"
-            className="w-full"
+          {/* nested masks: thin side fades on the wrapper, top/bottom on the img */}
+          <span
+            className="block w-full"
             style={{
               maskImage:
-                'linear-gradient(to bottom, black 70%, transparent 100%)',
+                'linear-gradient(to right, transparent, black 5%, black 95%, transparent)',
               WebkitMaskImage:
-                'linear-gradient(to bottom, black 70%, transparent 100%)',
-              mixBlendMode: 'multiply',
+                'linear-gradient(to right, transparent, black 5%, black 95%, transparent)',
             }}
-          />
+          >
+            <img
+              src="crew/inline.webp"
+              alt="the robot, santa, and the ballerina walking together in crew socks"
+              loading="lazy"
+              className="w-full"
+              style={{
+                maskImage:
+                  'linear-gradient(to bottom, transparent, black 14%, black 70%, transparent 100%)',
+                WebkitMaskImage:
+                  'linear-gradient(to bottom, transparent, black 14%, black 70%, transparent 100%)',
+                mixBlendMode: 'multiply',
+              }}
+            />
+          </span>
           <figcaption className="hero-title text-lg italic lowercase text-espresso/70 md:text-xl">
             the crew's waiting.
           </figcaption>
