@@ -1,7 +1,14 @@
 import { motion } from 'framer-motion'
 import Logo from './Logo'
+import SmoothLoopVideo from './SmoothLoopVideo'
 import { NoBleach, NoIron, TumbleLow, WashCold } from './CareSymbols'
 import { EASE, GRAIN } from './media'
+
+// Pexels free license: "Close-Up Shot of Water Droplets Falling Onto a Calm
+// Water" — https://www.pexels.com/video/close-up-shot-of-water-droplets-falling-onto-a-calm-water-9667531/
+// TODO: chosen via search, not previewable from the build sandbox — confirm
+// the mood live, or swap for brand footage of the socks/bag in water.
+const WATER_VIDEO = 'https://www.pexels.com/download/video/9667531/'
 
 const STEPS = [
   {
@@ -74,7 +81,8 @@ export default function CarePage() {
         </div>
       </nav>
 
-      <article className="relative mx-auto flex max-w-[680px] flex-col gap-10 px-8 pb-32 pt-36 md:pt-44">
+      <div className="md:grid md:grid-cols-[1.3fr_1fr]">
+        <article className="relative mx-auto flex w-full max-w-[680px] flex-col gap-10 px-8 pb-32 pt-36 md:pt-44">
         <div
           aria-hidden="true"
           className="pointer-events-none fixed inset-0 opacity-[0.04]"
@@ -148,7 +156,28 @@ export default function CarePage() {
             ← back to everyday crew
           </a>
         </Reveal>
-      </article>
+        </article>
+
+        {/* sticky water column — the page's subject, kept under the brown */}
+        <div className="relative hidden md:block">
+          <div className="sticky top-0 h-screen overflow-hidden">
+            <SmoothLoopVideo
+              className="absolute inset-0 h-full w-full object-cover"
+              src={WATER_VIDEO}
+            />
+            <div
+              aria-hidden="true"
+              className="absolute inset-0"
+              style={{ background: 'rgba(43,33,26,0.62)' }}
+            />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 opacity-[0.04]"
+              style={{ backgroundImage: `url("${GRAIN}")` }}
+            />
+          </div>
+        </div>
+      </div>
     </main>
   )
 }
