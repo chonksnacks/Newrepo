@@ -184,15 +184,16 @@ export default function StoryPage() {
           <Chapter n="01" title="the bad sock" />
 
           <Beat>
-            And two dudes scratching their heads. Not catastrophically bad,
-            just the kind of bad everyone seems to have gotten comfortable
-            with.
+            And two dudes scratching their heads, realizing neither of us
+            could remember the last time we'd actually bought socks on
+            purpose.
           </Beat>
           <Beat>
-            The cotton that pills after a few washes. The elastic that grips
-            too hard, marks your calves, then gives out by month two. The sock
-            that vanishes into a dimension between the washer and the dryer,
-            never to be seen again.
+            Our drawers told the story. Singles whose partners vanished
+            somewhere between the washer and the dryer. Pairs retired because
+            the bottoms wore through. A few that survived but were too
+            scratchy and, honestly, too ugly to wear. The kind of bad
+            everyone seems to have gotten comfortable with.
           </Beat>
           <Beat>We didn't think that was good enough.</Beat>
           <Moment text="we wanted to make a sock worth keeping." />
@@ -200,23 +201,23 @@ export default function StoryPage() {
           <Chapter n="02" title="the fix" />
 
           <Beat>
-            We're two people based in New York, and we set out to do something
-            simple: make the best version of the thing you put on every single
-            morning without thinking about it. Because when it's right, you
-            don't have to.
+            We're two people working out of the Garment District in New York,
+            and we set out to do something simple: make the best version of
+            the thing you put on every single morning without thinking about
+            it. Because when it's right, you don't have to.
           </Beat>
           <Snapshot
             src="story/founders.webp"
             alt="the two founders at a work table comparing samples"
-            caption="the two of us, mid-argument about a cuff"
+            caption="the two of us, arguing about what premium actually means for a sock"
             />
           <Beat>
-            The research phase was months of buying and wearing nearly every
-            sock Amazon sells. What we landed on was combed cotton, which
-            strips out the short, rough fibers before they're ever woven in.
-            Those fibers are the culprits behind pilling, that scratchy
-            feeling, and why regular socks look a year old by their third
-            wash.
+            The research phase was six months of buying and wearing
+            everything — New Balance, Kith, Muji, and plenty of cheap
+            multipacks. What we landed on was combed cotton, which strips out
+            the short, rough fibers before they're ever woven in. Those
+            fibers are the culprits behind pilling, that scratchy feeling,
+            and why regular socks look a year old by their third wash.
           </Beat>
           <Snapshot
             src="story/samples.webp"
@@ -262,6 +263,11 @@ export default function StoryPage() {
             the void and thought, genuinely, there has to be a better way.
           </Beat>
           <Beat>There is. You found it. Welcome to the crew.</Beat>
+          <Reveal>
+            <p className="hero-title m-0 text-2xl italic lowercase text-bone md:text-3xl">
+              — jeffrey & austin
+            </p>
+          </Reveal>
           <Moment text="do the basics, do them right. that's the whole thing." />
 
           <Reveal>
