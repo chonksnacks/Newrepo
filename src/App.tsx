@@ -7,6 +7,7 @@ import Colorways from './components/Colorways'
 import Differentiators from './components/Differentiators'
 import CareTeaser from './components/CareTeaser'
 import ShopCta from './components/ShopCta'
+import Footer from './components/Footer'
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <CareTeaser />
         <ShopCta />
       </main>
+      <Footer />
     </>
   )
 }
