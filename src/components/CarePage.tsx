@@ -115,8 +115,8 @@ function StepScroller() {
   }
 
   return (
-    <div ref={trackRef} className="relative h-[280vh]">
-      <div className="sticky top-0 flex h-screen flex-col justify-center gap-12">
+    <div ref={trackRef} className="relative -mt-10 h-[280vh] md:-mt-16">
+      <div className="sticky top-0 flex h-screen flex-col justify-start gap-12 pt-[26vh] md:pt-[28vh]">
         <div className="relative min-h-[240px]">
           {STEPS.map((step, i) => (
             <motion.div
@@ -187,7 +187,7 @@ export default function CarePage() {
       </nav>
 
       <div className="md:grid md:grid-cols-[1.5fr_0.85fr]">
-        <article className="relative flex w-full flex-col gap-10 px-8 pb-32 pt-36 md:pl-[22%] md:pr-16 md:pt-44">
+        <article className="relative flex w-full flex-col gap-10 px-8 pb-32 pt-36 md:pl-[28%] md:pr-16 md:pt-44">
           <div
             aria-hidden="true"
             className="pointer-events-none fixed inset-0 opacity-[0.04]"
