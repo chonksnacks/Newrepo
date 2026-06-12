@@ -4,11 +4,11 @@ import SmoothLoopVideo from './SmoothLoopVideo'
 import { NoBleach, NoIron, TumbleLow, WashCold } from './CareSymbols'
 import { EASE, GRAIN } from './media'
 
-// Pexels free license: "Close-Up Shot of Water Droplets Falling Onto a Calm
-// Water" — https://www.pexels.com/video/close-up-shot-of-water-droplets-falling-onto-a-calm-water-9667531/
+// Pexels free license: "A Moving Fabric" by Mikhail Nilov — cream silk
+// rippling in soft light: https://www.pexels.com/video/a-moving-fabric-7677259/
 // TODO: chosen via search, not previewable from the build sandbox — confirm
-// the mood live, or swap for brand footage of the socks/bag in water.
-const WATER_VIDEO = 'https://www.pexels.com/download/video/9667531/'
+// the mood live, or swap for brand footage of the socks/bag/fabric.
+const FABRIC_VIDEO = 'https://www.pexels.com/download/video/7677259/'
 
 const STEPS = [
   {
@@ -158,17 +158,26 @@ export default function CarePage() {
         </Reveal>
         </article>
 
-        {/* sticky water column — the page's subject, kept under the brown */}
+        {/* sticky fabric column — the material itself, kept under the brown */}
         <div className="relative hidden md:block">
           <div className="sticky top-0 h-screen overflow-hidden">
             <SmoothLoopVideo
               className="absolute inset-0 h-full w-full object-cover"
-              src={WATER_VIDEO}
+              style={{ filter: 'sepia(0.35) saturate(0.8) brightness(0.95)' }}
+              src={FABRIC_VIDEO}
             />
             <div
               aria-hidden="true"
               className="absolute inset-0"
-              style={{ background: 'rgba(43,33,26,0.62)' }}
+              style={{ background: 'rgba(43,33,26,0.55)' }}
+            />
+            {/* the article's espresso bleeds into the column — no hard seam */}
+            <div
+              aria-hidden="true"
+              className="absolute inset-y-0 left-0 w-48"
+              style={{
+                background: 'linear-gradient(to right, #2B211A, rgba(43,33,26,0))',
+              }}
             />
             <div
               aria-hidden="true"

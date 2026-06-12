@@ -9,9 +9,11 @@ const SEAM_WINDOW_S = 0.7
 export default function SmoothLoopVideo({
   src,
   className = '',
+  style,
 }: {
   src: string
   className?: string
+  style?: React.CSSProperties
 }) {
   const videoRef = useRef<HTMLVideoElement>(null)
   const [dimmed, setDimmed] = useState(false)
@@ -28,6 +30,7 @@ export default function SmoothLoopVideo({
       <video
         ref={videoRef}
         className={className}
+        style={style}
         src={src}
         poster={POSTER}
         autoPlay
