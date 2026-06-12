@@ -1,26 +1,17 @@
 import { motion } from 'framer-motion'
-import SmoothLoopVideo from './SmoothLoopVideo'
-import { EASE, GRAIN, TINT } from './media'
+import { EASE, GRAIN } from './media'
 
-// Same Pexels walking clip as the hero — the teaser shares its energy.
-// TODO: replace with EDC brand footage (see note in Hero.tsx).
-const TEASER_VIDEO = 'https://www.pexels.com/download/video/5665059/'
-
+// the origin story, distilled — centered and quiet, linking to the full page
 export default function StoryTeaser() {
   return (
-    <section className="relative h-[88vh] w-full overflow-hidden bg-espresso md:grid md:grid-cols-2">
-      {/* right half: living imagery (background on mobile) */}
-      <div className="absolute inset-0 md:relative md:order-2 md:overflow-hidden">
-        <SmoothLoopVideo
-          className="absolute inset-0 h-full w-full object-cover"
-          src={TEASER_VIDEO}
-        />
-        <div aria-hidden="true" className="absolute inset-0" style={{ background: TINT }} />
-      </div>
-
-      {/* left half: the distilled origin story */}
+    <section className="relative flex w-full flex-col items-center overflow-hidden bg-espresso px-8 py-28 text-center md:py-40">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 opacity-[0.04]"
+        style={{ backgroundImage: `url("${GRAIN}")` }}
+      />
       <motion.div
-        className="relative z-10 flex h-full flex-col justify-center gap-6 px-8 py-16 md:order-1 md:bg-espresso md:px-16"
+        className="relative flex max-w-[28em] flex-col items-center gap-6"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.5 }}
@@ -36,7 +27,7 @@ export default function StoryTeaser() {
         </motion.span>
         <span className="block overflow-hidden">
           <motion.h2
-            className="hero-title m-0 max-w-[14em] pb-[0.2em] -mb-[0.1em] text-3xl font-medium lowercase text-cream md:text-5xl"
+            className="hero-title m-0 pb-[0.2em] -mb-[0.1em] text-3xl font-medium lowercase text-cream md:text-5xl"
             variants={{
               hidden: { y: '100%', opacity: 0 },
               visible: {
@@ -51,7 +42,7 @@ export default function StoryTeaser() {
           </motion.h2>
         </span>
         <motion.p
-          className="m-0 max-w-[340px] text-[15px] leading-snug text-cream/90"
+          className="m-0 max-w-[44ch] text-[15px] leading-snug text-cream/90"
           variants={{
             hidden: { opacity: 0 },
             visible: {
@@ -61,12 +52,12 @@ export default function StoryTeaser() {
           }}
         >
           combed cotton instead of the kind that pills, and a fit that holds
-          on without digging into your calves. a sock worth keeping,
-          designed in new york.
+          on without digging into your calves. a sock worth keeping, designed
+          in new york.
         </motion.p>
         <motion.a
           href="story.html"
-          className="mt-2 w-fit text-[15px] text-cream transition-colors duration-300 hover:text-clay"
+          className="mt-1 w-fit text-[15px] text-cream transition-colors duration-300 hover:text-clay"
           variants={{
             hidden: { opacity: 0 },
             visible: {
@@ -78,12 +69,6 @@ export default function StoryTeaser() {
           read our story →
         </motion.a>
       </motion.div>
-
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute inset-0 z-20 opacity-[0.04]"
-        style={{ backgroundImage: `url("${GRAIN}")` }}
-      />
     </section>
   )
 }
