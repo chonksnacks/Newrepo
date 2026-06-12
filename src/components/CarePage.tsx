@@ -194,12 +194,8 @@ function StepScroller() {
             {String(Math.min(active + 1, STEPS.length)).padStart(2, '0')} /{' '}
             {String(STEPS.length).padStart(2, '0')}
           </span>
-          <span
-            className={`text-xs tracking-[0.14em] text-clay transition-opacity duration-500 ${
-              active >= STEPS.length - 1 ? 'opacity-0' : 'opacity-100'
-            }`}
-          >
-            keep scrolling
+          <span className="text-xs tracking-[0.14em] text-clay">
+            {active === STEPS.length - 1 ? 'one more' : 'keep scrolling'}
           </span>
         </div>
       </div>
