@@ -43,6 +43,19 @@ export default function Breather() {
             one pair, built for all of it.
           </motion.p>
         </span>
+        <motion.p
+          className="m-0 max-w-[34ch] text-xs uppercase tracking-[0.14em] leading-loose text-clay md:max-w-none md:text-sm"
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: { delay: 0.5, duration: 0.8, ease: EASE },
+            },
+          }}
+        >
+          breathable&ensp;·&ensp;moisture-wicking&ensp;·&ensp;stupid
+          comfortable&ensp;·&ensp;cushioned where it counts
+        </motion.p>
       </motion.div>
     </section>
   )
