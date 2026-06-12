@@ -4,7 +4,7 @@ import { EASE, GRAIN } from './media'
 // a quiet exhale between the seasons and the story — one line, lots of air
 export default function Breather() {
   return (
-    <section className="relative flex w-full flex-col items-center gap-6 overflow-hidden bg-espresso px-8 py-20 text-center md:py-28">
+    <section className="relative flex w-full flex-col items-center gap-6 overflow-hidden bg-espresso px-8 py-16 text-center md:py-24">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 opacity-[0.04]"

@@ -4,7 +4,7 @@ import { EASE, GRAIN } from './media'
 // the origin story, distilled — centered and quiet, linking to the full page
 export default function StoryTeaser() {
   return (
-    <section className="relative flex w-full flex-col items-center overflow-hidden bg-espresso px-8 py-28 text-center md:py-40">
+    <section className="relative flex w-full flex-col items-center overflow-hidden bg-espresso px-8 pb-28 pt-16 text-center md:pb-40 md:pt-20">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 opacity-[0.04]"
