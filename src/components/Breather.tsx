@@ -30,7 +30,7 @@ export default function Breather() {
         />
         <span className="block overflow-hidden">
           <motion.p
-            className="hero-title m-0 max-w-[18em] pb-[0.2em] -mb-[0.1em] text-2xl font-normal italic lowercase text-bone md:text-4xl"
+            className="hero-title m-0 max-w-[18em] pb-[0.2em] -mb-[0.1em] text-3xl font-normal italic lowercase text-bone md:text-4xl"
             variants={{
               hidden: { y: '100%', opacity: 0 },
               visible: {
@@ -43,8 +43,8 @@ export default function Breather() {
             one pair, built for all of it.
           </motion.p>
         </span>
-        <motion.p
-          className="m-0 max-w-[34ch] text-xs uppercase tracking-[0.14em] leading-loose text-clay md:max-w-none md:text-sm"
+        <motion.ul
+          className="m-0 flex list-none flex-col items-center gap-2 p-0 text-[11px] uppercase tracking-[0.14em] text-clay md:flex-row md:gap-0 md:text-sm"
           variants={{
             hidden: { opacity: 0 },
             visible: {
@@ -53,9 +53,19 @@ export default function Breather() {
             },
           }}
         >
-          breathable&ensp;·&ensp;moisture-wicking&ensp;·&ensp;stupid
-          comfortable&ensp;·&ensp;cushioned where it counts
-        </motion.p>
+          {['breathable', 'moisture-wicking', 'stupid comfortable', 'cushioned where it counts'].map(
+            (item, i) => (
+              <li key={item} className="flex items-center">
+                {i > 0 && (
+                  <span aria-hidden="true" className="hidden px-3 md:inline">
+                    ·
+                  </span>
+                )}
+                {item}
+              </li>
+            ),
+          )}
+        </motion.ul>
       </motion.div>
     </section>
   )
