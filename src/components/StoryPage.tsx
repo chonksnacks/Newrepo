@@ -230,6 +230,10 @@ export default function StoryPage() {
             one and exactly the same on day three hundred.
           </Beat>
           <Beat>
+            Getting there took close to two hundred prototypes, six months of
+            wear testing, and hundreds of wash cycles. We counted.
+          </Beat>
+          <Beat>
             At the gym. At the office. On a slow jog on a cold October
             morning. Everywhere you show up, it shows up.
           </Beat>

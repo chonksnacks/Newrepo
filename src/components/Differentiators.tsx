@@ -20,7 +20,7 @@ const BLOCKS = [
   {
     n: '02',
     title: 'combed cotton',
-    body: 'combing strips the short, rough fibers out before the yarn is ever spun. those little fibers are what pill, what scratch, and what make a sock look old by its third wash. without them, day three hundred feels like day one.',
+    body: 'combing strips the short, rough fibers out before the yarn is ever spun. those little fibers are what pill, what scratch, and what make a sock look old by its third wash. we ran ours through hundreds of wash cycles to make sure day three hundred feels like day one.',
     // PLACEHOLDER: knit / cotton fabric close-up
     img: 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=1600&q=70&sat=-40',
     alt: 'cotton knit texture placeholder',
