@@ -83,6 +83,33 @@ function Step({ step }: { step: (typeof STEPS)[number] }) {
   )
 }
 
+
+function Finale() {
+  return (
+    <div className="flex flex-col gap-6">
+      <span className="flex items-center gap-4">
+        <span aria-hidden="true" className="h-px w-12 bg-clay/50" />
+        <span className="text-xs uppercase tracking-[0.14em] text-bone/80">
+          your wash bag, off duty
+        </span>
+      </span>
+      <p className="m-0 max-w-[46ch] text-[15px] leading-relaxed text-bone">
+        between laundry days it moonlights as a travel pouch, a gym
+        organizer, and a daily carry. it never has to be just packaging.
+      </p>
+      <p className="hero-title m-0 max-w-[16em] pt-4 text-3xl font-normal italic lowercase text-cream md:text-4xl">
+        wash it like you mean to keep it.
+      </p>
+      <a
+        href="./"
+        className="w-fit text-[15px] text-cream transition-colors duration-300 hover:text-clay"
+      >
+        ← back to everyday crew
+      </a>
+    </div>
+  )
+}
+
 // the four rules, one at a time: pinned while scroll steps through them
 function StepScroller() {
   const reducedMotion = useReducedMotion()
@@ -93,11 +120,10 @@ function StepScroller() {
     offset: ['start start', 'end end'],
   })
 
+  const panelCount = STEPS.length + 1 // the four rules, then the send-off
+
   useMotionValueEvent(scrollYProgress, 'change', (v) => {
-    const next = Math.min(
-      STEPS.length - 1,
-      Math.max(0, Math.floor(v * STEPS.length)),
-    )
+    const next = Math.min(panelCount - 1, Math.max(0, Math.floor(v * panelCount)))
     if (next !== active) setActive(next)
   })
 
@@ -110,14 +136,17 @@ function StepScroller() {
             <Step step={step} />
           </Reveal>
         ))}
+        <Reveal>
+          <Finale />
+        </Reveal>
       </div>
     )
   }
 
   return (
-    <div ref={trackRef} className="relative -mt-10 h-[280vh] md:-mt-16">
+    <div ref={trackRef} className="relative -mt-10 h-[340vh] md:-mt-16">
       <div className="sticky top-0 flex h-screen flex-col justify-start gap-12 pt-[26vh] md:pt-[28vh]">
-        <div className="relative min-h-[240px]">
+        <div className="relative min-h-[300px]">
           {STEPS.map((step, i) => (
             <motion.div
               key={step.n}
@@ -130,28 +159,44 @@ function StepScroller() {
               <Step step={step} />
             </motion.div>
           ))}
+          <motion.div
+            className="absolute inset-0"
+            style={{ pointerEvents: active === STEPS.length ? 'auto' : 'none' }}
+            initial={false}
+            animate={{
+              opacity: active === STEPS.length ? 1 : 0,
+              y: active === STEPS.length ? 0 : 14,
+            }}
+            transition={{ duration: 0.5, ease: EASE }}
+          >
+            <Finale />
+          </motion.div>
         </div>
 
         {/* progress: four segments, the count, a quiet nudge */}
-        <div className="flex items-center gap-4">
+        <div
+          className={`flex items-center gap-4 transition-opacity duration-500 ${
+            active >= STEPS.length ? 'opacity-0' : 'opacity-100'
+          }`}
+        >
           <div className="flex items-center gap-2">
             {STEPS.map((step, i) => (
               <span
                 key={step.n}
                 aria-hidden="true"
                 className={`block h-px w-10 transition-colors duration-500 ${
-                  i <= active ? 'bg-cream' : 'bg-bone/30'
+                  i <= Math.min(active, STEPS.length - 1) ? 'bg-cream' : 'bg-bone/30'
                 }`}
               />
             ))}
           </div>
           <span className="text-xs tracking-[0.14em] text-bone/70">
-            {String(active + 1).padStart(2, '0')} /{' '}
+            {String(Math.min(active + 1, STEPS.length)).padStart(2, '0')} /{' '}
             {String(STEPS.length).padStart(2, '0')}
           </span>
           <span
             className={`text-xs tracking-[0.14em] text-clay transition-opacity duration-500 ${
-              active === STEPS.length - 1 ? 'opacity-0' : 'opacity-100'
+              active >= STEPS.length - 1 ? 'opacity-0' : 'opacity-100'
             }`}
           >
             keep scrolling
@@ -213,34 +258,6 @@ export default function CarePage() {
           </Reveal>
 
           <StepScroller />
-
-          <Reveal className="flex flex-col gap-5 pt-12">
-            <span className="flex items-center gap-4">
-              <span aria-hidden="true" className="h-px w-12 bg-clay/50" />
-              <span className="text-xs uppercase tracking-[0.14em] text-bone/80">
-                your wash bag, off duty
-              </span>
-            </span>
-            <p className="m-0 max-w-[46ch] text-[15px] leading-relaxed text-bone">
-              between laundry days it moonlights as a travel pouch, a gym
-              organizer, and a daily carry. it never has to be just packaging.
-            </p>
-          </Reveal>
-
-          <Reveal className="pt-10">
-            <p className="hero-title m-0 max-w-[16em] text-3xl font-normal italic lowercase text-cream md:text-4xl">
-              wash it like you mean to keep it.
-            </p>
-          </Reveal>
-
-          <Reveal>
-            <a
-              href="./"
-              className="w-fit text-[15px] text-cream transition-colors duration-300 hover:text-clay"
-            >
-              ← back to everyday crew
-            </a>
-          </Reveal>
         </article>
 
         {/* sticky fabric column — the material itself, kept under the brown */}
