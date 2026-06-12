@@ -2,10 +2,9 @@ import { motion } from 'framer-motion'
 import { EASE, GRAIN } from './media'
 
 // TODO: estimated hexes — swap for the real colorway values when they exist.
-// Pack names are placeholders too.
 const PACKS = [
   {
-    label: 'pack 01 — the cool one',
+    label: 'pack 01 — the weekday',
     colors: [
       { name: 'vapor grey', hex: '#C7C6C2', dark: false },
       { name: 'sleet grey', hex: '#8D8B86', dark: false },
@@ -13,7 +12,7 @@ const PACKS = [
     ],
   },
   {
-    label: 'pack 02 — the warm one',
+    label: 'pack 02 — the weekend',
     colors: [
       { name: 'fresh white', hex: '#F6F4EE', dark: false },
       { name: 'oat creme', hex: '#E8DFCB', dark: false },
