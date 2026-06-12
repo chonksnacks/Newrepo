@@ -1,4 +1,10 @@
-import { motion } from 'framer-motion'
+import { useRef, useState } from 'react'
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useMotionValueEvent,
+} from 'framer-motion'
 import Logo from './Logo'
 import SmoothLoopVideo from './SmoothLoopVideo'
 import { NoBleach, NoIron, TumbleLow, WashCold } from './CareSymbols'
@@ -57,6 +63,105 @@ function Reveal({
   )
 }
 
+function Step({ step }: { step: (typeof STEPS)[number] }) {
+  return (
+    <>
+      <span className="flex items-center gap-4">
+        <span className="text-xs tracking-[0.14em] text-clay">{step.n}</span>
+        <span aria-hidden="true" className="h-px w-12 bg-clay/50" />
+      </span>
+      <div className="flex items-center gap-5">
+        <step.Icon className="h-9 w-9 shrink-0 text-bone md:h-11 md:w-11" />
+        <h2 className="hero-title m-0 text-3xl font-medium lowercase text-cream md:text-5xl">
+          {step.title}
+        </h2>
+      </div>
+      <p className="m-0 max-w-[46ch] text-[15px] leading-relaxed text-bone">
+        {step.body}
+      </p>
+    </>
+  )
+}
+
+// the four rules, one at a time: pinned while scroll steps through them
+function StepScroller() {
+  const reducedMotion = useReducedMotion()
+  const trackRef = useRef<HTMLDivElement>(null)
+  const [active, setActive] = useState(0)
+  const { scrollYProgress } = useScroll({
+    target: trackRef,
+    offset: ['start start', 'end end'],
+  })
+
+  useMotionValueEvent(scrollYProgress, 'change', (v) => {
+    const next = Math.min(
+      STEPS.length - 1,
+      Math.max(0, Math.floor(v * STEPS.length)),
+    )
+    if (next !== active) setActive(next)
+  })
+
+  // reduced motion: the plain list, no pinning
+  if (reducedMotion) {
+    return (
+      <div className="flex flex-col gap-12 pt-6 md:gap-16">
+        {STEPS.map((step) => (
+          <Reveal key={step.n} className="flex flex-col gap-3">
+            <Step step={step} />
+          </Reveal>
+        ))}
+      </div>
+    )
+  }
+
+  return (
+    <div ref={trackRef} className="relative h-[280vh]">
+      <div className="sticky top-0 flex h-screen flex-col justify-center gap-12">
+        <div className="relative min-h-[240px]">
+          {STEPS.map((step, i) => (
+            <motion.div
+              key={step.n}
+              className="absolute inset-0 flex flex-col gap-3"
+              style={{ pointerEvents: i === active ? 'auto' : 'none' }}
+              initial={false}
+              animate={{ opacity: i === active ? 1 : 0, y: i === active ? 0 : 14 }}
+              transition={{ duration: 0.5, ease: EASE }}
+            >
+              <Step step={step} />
+            </motion.div>
+          ))}
+        </div>
+
+        {/* progress: four segments, the count, a quiet nudge */}
+        <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2">
+            {STEPS.map((step, i) => (
+              <span
+                key={step.n}
+                aria-hidden="true"
+                className={`block h-px w-10 transition-colors duration-500 ${
+                  i <= active ? 'bg-cream' : 'bg-bone/30'
+                }`}
+              />
+            ))}
+          </div>
+          <span className="text-xs tracking-[0.14em] text-bone/70">
+            {String(active + 1).padStart(2, '0')} /{' '}
+            {String(STEPS.length).padStart(2, '0')}
+          </span>
+          <span
+            className={`text-xs tracking-[0.14em] text-clay transition-opacity duration-500 ${
+              active === STEPS.length - 1 ? 'opacity-0' : 'opacity-100'
+            }`}
+          >
+            keep scrolling
+          </span>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function CarePage() {
   return (
     <main className="min-h-full bg-espresso text-cream">
@@ -81,81 +186,61 @@ export default function CarePage() {
         </div>
       </nav>
 
-      <div className="md:grid md:grid-cols-[1.3fr_1fr]">
-        <article className="relative mx-auto flex w-full max-w-[680px] flex-col gap-10 px-8 pb-32 pt-36 md:pt-44">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none fixed inset-0 opacity-[0.04]"
-          style={{ backgroundImage: `url("${GRAIN}")` }}
-        />
+      <div className="md:grid md:grid-cols-[1.5fr_0.85fr]">
+        <article className="relative flex w-full flex-col gap-10 px-8 pb-32 pt-36 md:pl-[22%] md:pr-16 md:pt-44">
+          <div
+            aria-hidden="true"
+            className="pointer-events-none fixed inset-0 opacity-[0.04]"
+            style={{ backgroundImage: `url("${GRAIN}")` }}
+          />
 
-        <Reveal>
-          <span className="text-xs tracking-wide text-bone/80 md:text-sm">
-            care
-          </span>
-          <h1 className="hero-title m-0 mt-4 pb-[0.1em] text-5xl font-medium lowercase text-cream md:text-7xl">
-            easy to wear, easy to{' '}
-            <em className="font-normal italic">wash.</em>
-          </h1>
-        </Reveal>
-
-        <Reveal>
-          <p className="m-0 max-w-[46ch] text-[17px] leading-relaxed text-bone">
-            85% combed cotton, 10% nylon, 5% spandex. The blend wants a
-            standard gentle routine, and the bag does most of the work.
-            Four rules.
-          </p>
-        </Reveal>
-
-        <div className="flex flex-col gap-12 pt-6 md:gap-16">
-          {STEPS.map((step) => (
-            <Reveal key={step.n} className="flex flex-col gap-3">
-              <span className="flex items-center gap-4">
-                <span className="text-xs tracking-[0.14em] text-clay">
-                  {step.n}
-                </span>
-                <span aria-hidden="true" className="h-px w-12 bg-clay/50" />
-              </span>
-              <div className="flex items-center gap-5">
-                <step.Icon className="h-9 w-9 shrink-0 text-bone md:h-11 md:w-11" />
-                <h2 className="hero-title m-0 text-3xl font-medium lowercase text-cream md:text-5xl">
-                  {step.title}
-                </h2>
-              </div>
-              <p className="m-0 max-w-[46ch] text-[15px] leading-relaxed text-bone">
-                {step.body}
-              </p>
-            </Reveal>
-          ))}
-        </div>
-
-        <Reveal className="flex flex-col gap-5 pt-12">
-          <span className="flex items-center gap-4">
-            <span aria-hidden="true" className="h-px w-12 bg-clay/50" />
-            <span className="text-xs uppercase tracking-[0.14em] text-bone/80">
-              your wash bag, off duty
+          <Reveal>
+            <span className="text-xs tracking-wide text-bone/80 md:text-sm">
+              care
             </span>
-          </span>
-          <p className="m-0 max-w-[46ch] text-[15px] leading-relaxed text-bone">
-            between laundry days it moonlights as a travel pouch, a gym
-            organizer, and a daily carry. it never has to be just packaging.
-          </p>
-        </Reveal>
+            <h1 className="hero-title m-0 mt-4 pb-[0.1em] text-5xl font-medium lowercase text-cream md:text-7xl">
+              easy to wear, easy to{' '}
+              <em className="font-normal italic">wash.</em>
+            </h1>
+          </Reveal>
 
-        <Reveal className="pt-10">
-          <p className="hero-title m-0 max-w-[16em] text-3xl font-normal italic lowercase text-cream md:text-4xl">
-            wash it like you mean to keep it.
-          </p>
-        </Reveal>
+          <Reveal>
+            <p className="m-0 max-w-[46ch] text-[17px] leading-relaxed text-bone">
+              85% combed cotton, 10% nylon, 5% spandex. The blend wants a
+              standard gentle routine, and the bag does most of the work.
+              Four rules.
+            </p>
+          </Reveal>
 
-        <Reveal>
-          <a
-            href="./"
-            className="w-fit text-[15px] text-cream transition-colors duration-300 hover:text-clay"
-          >
-            ← back to everyday crew
-          </a>
-        </Reveal>
+          <StepScroller />
+
+          <Reveal className="flex flex-col gap-5 pt-12">
+            <span className="flex items-center gap-4">
+              <span aria-hidden="true" className="h-px w-12 bg-clay/50" />
+              <span className="text-xs uppercase tracking-[0.14em] text-bone/80">
+                your wash bag, off duty
+              </span>
+            </span>
+            <p className="m-0 max-w-[46ch] text-[15px] leading-relaxed text-bone">
+              between laundry days it moonlights as a travel pouch, a gym
+              organizer, and a daily carry. it never has to be just packaging.
+            </p>
+          </Reveal>
+
+          <Reveal className="pt-10">
+            <p className="hero-title m-0 max-w-[16em] text-3xl font-normal italic lowercase text-cream md:text-4xl">
+              wash it like you mean to keep it.
+            </p>
+          </Reveal>
+
+          <Reveal>
+            <a
+              href="./"
+              className="w-fit text-[15px] text-cream transition-colors duration-300 hover:text-clay"
+            >
+              ← back to everyday crew
+            </a>
+          </Reveal>
         </article>
 
         {/* sticky fabric column — the material itself, kept under the brown */}
