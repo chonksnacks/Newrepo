@@ -172,10 +172,7 @@ export default function StoryPage() {
           />
 
           <Reveal>
-            <span className="text-xs tracking-wide text-bone/80 md:text-sm">
-              our story
-            </span>
-            <h1 className="hero-title m-0 mt-4 max-w-[12em] pb-[0.1em] text-5xl font-medium lowercase text-cream md:text-7xl">
+            <h1 className="hero-title m-0 max-w-[12em] pb-[0.1em] text-5xl font-medium lowercase text-cream md:text-7xl">
               some ideas start with a big vision. ours started with a{' '}
               <em className="font-normal italic">bad sock.</em>
             </h1>
