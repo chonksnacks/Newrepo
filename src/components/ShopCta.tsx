@@ -23,15 +23,6 @@ export default function ShopCta() {
         whileInView="visible"
         viewport={{ once: true, amount: 0.5 }}
       >
-        <motion.span
-          className="text-xs tracking-wide text-chestnut md:text-sm"
-          variants={{
-            hidden: { opacity: 0 },
-            visible: { opacity: 1, transition: { duration: 0.8, ease: EASE } },
-          }}
-        >
-          one pair. all of it.
-        </motion.span>
         <span className="block overflow-hidden">
           <motion.h2
             className="hero-title m-0 pb-[0.2em] -mb-[0.1em] text-6xl font-medium lowercase text-espresso md:text-8xl"

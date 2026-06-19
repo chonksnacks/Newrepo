@@ -62,10 +62,6 @@ function Block({ block, flip }: { block: (typeof BLOCKS)[number]; flip: boolean 
         className={`flex max-w-[44ch] flex-col gap-5 ${flip ? 'md:order-1 md:justify-self-end' : ''}`}
         {...appear(0.15)}
       >
-        <span className="flex items-center gap-4">
-          <span className="text-xs tracking-[0.14em] text-clay">{block.n}</span>
-          <span aria-hidden="true" className="h-px w-12 bg-clay/50" />
-        </span>
         <h3 className="hero-title m-0 text-3xl font-medium lowercase text-cream md:text-5xl">
           {block.title}
         </h3>

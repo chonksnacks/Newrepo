@@ -4,7 +4,7 @@ import { EASE, GRAIN } from './media'
 // TODO: estimated hexes — swap for the real colorway values when they exist.
 const PACKS = [
   {
-    label: 'pack 01 — the weekday',
+    label: 'the weekday',
     colors: [
       { name: 'vapor grey', hex: '#C7C6C2', dark: false },
       { name: 'sleet grey', hex: '#8D8B86', dark: false },
@@ -12,7 +12,7 @@ const PACKS = [
     ],
   },
   {
-    label: 'pack 02 — the weekend',
+    label: 'the weekend',
     colors: [
       { name: 'fresh white', hex: '#F6F4EE', dark: false },
       { name: 'oat creme', hex: '#E8DFCB', dark: false },
@@ -30,14 +30,8 @@ function Pack({ pack, index }: { pack: (typeof PACKS)[number]; index: number }) 
       viewport={{ once: true, amount: 0.3 }}
       transition={{ delay: index * 0.15, duration: 0.9, ease: EASE }}
     >
-      <span className="flex items-center gap-4">
-        <span className="text-xs tracking-[0.14em] text-clay">
-          {String(index + 1).padStart(2, '0')}
-        </span>
-        <span aria-hidden="true" className="h-px w-12 bg-clay/50" />
-        <span className="text-xs uppercase tracking-[0.14em] text-bone/80">
-          {pack.label}
-        </span>
+      <span className="text-xs uppercase tracking-[0.14em] text-bone/80">
+        {pack.label}
       </span>
       <div className="flex h-[34vh] w-full overflow-hidden md:h-[44vh]">
         {pack.colors.map((color) => (
@@ -81,10 +75,7 @@ export default function Colorways() {
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.9, ease: EASE }}
         >
-          <span className="text-xs tracking-wide text-bone/80 md:text-sm">
-            colorways
-          </span>
-          <h2 className="hero-title m-0 mt-4 max-w-[14em] text-4xl font-medium lowercase text-cream md:text-6xl">
+          <h2 className="hero-title m-0 max-w-[14em] text-4xl font-medium lowercase text-cream md:text-6xl">
             six colors. two packs. one{' '}
             <em className="font-normal italic">sock.</em>
           </h2>

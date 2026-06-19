@@ -18,15 +18,6 @@ export default function CareTeaser() {
         whileInView="visible"
         viewport={{ once: true, amount: 0.5 }}
       >
-        <motion.span
-          className="text-xs tracking-wide text-bone/80 md:text-sm"
-          variants={{
-            hidden: { opacity: 0 },
-            visible: { opacity: 1, transition: { duration: 0.8, ease: EASE } },
-          }}
-        >
-          care
-        </motion.span>
         <span className="block overflow-hidden">
           <motion.h2
             className="hero-title m-0 max-w-[14em] pb-[0.2em] -mb-[0.1em] text-3xl font-medium lowercase text-cream md:text-5xl"
