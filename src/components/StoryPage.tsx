@@ -222,13 +222,13 @@ export default function StoryPage() {
             caption="the audition pile — tagged, tested, mostly rejected"
             />
           <Beat>
-            We blend it with nylon for durability and spandex for the fit,
+            We blend it with polyester for breathability and spandex for the fit,
             which lands snug without ever squeezing. It feels pillowy on day
             one and exactly the same on day three hundred.
           </Beat>
           <Beat>
             Getting there took close to two hundred prototypes, six months of
-            wear testing, and hundreds of wash cycles. We counted.
+            wear testing, and hundreds of wash cycles: we counted.
           </Beat>
           <Beat>
             At the gym. At the office. On a slow jog on a cold October
@@ -259,7 +259,7 @@ export default function StoryPage() {
           </Beat>
           <Beat>
             For the guy who buys a sh*tty 12-pack at the drug store because he
-            finally lost the last pair he owned. For the person who gives a
+            finally lost the last pair he owned. For the person who actually gives a
             damn about the small things. For anyone who's ever lost a sock to
             the void and thought, genuinely, there has to be a better way.
           </Beat>
